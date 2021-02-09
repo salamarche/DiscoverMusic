@@ -20,6 +20,7 @@
   </properties>
 
   <dependencies>
+    <!-- -->
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
@@ -29,14 +30,15 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.39</version>
+      <version>8.0.23</version>
     </dependency>
+    <!-- -->
     <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-    <!-- next 2 dependencies are for log4j -->
+    <!--log4j -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -47,13 +49,13 @@
       <artifactId>log4j-core</artifactId>
       <version>2.10.0</version>
     </dependency>
+    <!-- Junit -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>5.0.0</version>
       <scope>test</scope>
     </dependency>
-    <!-- To run tests on IDE such as Eclipse, Intellij -->
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-runner</artifactId>
@@ -66,16 +68,19 @@
       <version>4.12.0</version>
       <scope>test</scope>
     </dependency>
+    <!-- Hibernate -->
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.2.12.Final</version>
+      <version>5.4.4.Final</version>
     </dependency>
-
+    <!-- c3p0 - used to handle connection pooling with hibernate -->
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-c3p0</artifactId>
-      <version>5.2.12.Final</version>
+      <version>5.4.4.Final</version>
     </dependency>
 
     <!-- project lombok to eliminate redundant code -->
