@@ -20,12 +20,13 @@
   - password
 - artist
   - id
-  - artist_name
-  - location
   - soundcloud_id
-- userFavorite
+  - engagement_count (likes)
+  - other saved data from soundcloud???
+- user_history
   - user_id
   - artist_id
+  - date
 
 
 
@@ -34,6 +35,7 @@
 - [ ] Add User controller
 - [ ] User entity
 - [ ] Handle form changes for Sign Up vs Sign In
+- [ ] SHA-256 password hashing
 
 ## Sign In
 - [ ] User authentication 
