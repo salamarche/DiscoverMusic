@@ -1,0 +1,35 @@
+use music;
+
+DROP TABLE IF EXISTS user_history;
+DROP TABLE IF EXISTS artist;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+user_name VARCHAR(100) NOT NULL,
+email VARCHAR(100) NOT NULL,
+password CHAR(64) NOT NULL
+
+);
+
+CREATE TABLE artist (
+
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+soundcloud_id VARCHAR(100),
+engagement_count INT
+
+);
+
+CREATE TABLE user_history (
+artist_id INT,
+user_id INT,
+date DATE
+);
+
+ALTER TABLE user_history ADD CONSTRAINT FK_user_id
+	FOREIGN KEY (user_id) REFERENCES user(id);
+
+ALTER TABLE user_history ADD CONSTRAINT FK_artist_id
+	FOREIGN KEY (artist_id) REFERENCES artist(id);
+
