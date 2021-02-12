@@ -17,6 +17,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <junit-platform-runner-version>1.0.0</junit-platform-runner-version>
+    <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+    <maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
   </properties>
 
   <dependencies>
@@ -98,52 +101,27 @@
   <build>
     <finalName>DiscoverMusic</finalName>
 
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <!-- plugin to allow resource filtering-->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-          <webResources>
-            <resource>
-              <directory>src/main/webapp/META-INF</directory>
-              <filtering>true</filtering>
-              <targetPath>META-INF</targetPath>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.0.0</version>
-          </dependency>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin-version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin-version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.junit.platform</groupId>
+              <artifactId>junit-platform-surefire-provider</artifactId>
+              <version>${junit-platform-runner-version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
 
-
-        </dependencies>
-      </plugin>
-    </plugins>
     <filters>
       <!--
       <filter>profiles/${profile.name}.properties</filter>
