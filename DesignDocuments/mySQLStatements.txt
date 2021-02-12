@@ -33,3 +33,11 @@ ALTER TABLE user_history ADD CONSTRAINT FK_user_id
 ALTER TABLE user_history ADD CONSTRAINT FK_artist_id
 	FOREIGN KEY (artist_id) REFERENCES artist(id);
 
+
+DELETE FROM user WHERE id > 1 ;
+INSERT INTO user (user_name, email, password)
+VALUES ("Test", "test@test.com", "test");
+INSERT INTO user (user_name, email, password)
+VALUES ("Testy McTestFace", "testface@test.com", "test");
+
+

@@ -20,11 +20,20 @@ public class EditUser extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDao userDao = new UserDao();
-        if (req.getParameter("class").equals("deleteUser")) {
-            logger.info("I'm here");
+        //delete a user
+        if (req.getParameter("submit").equals("delete")) {
+            Integer selectedUserId = Integer.parseInt(req.getParameter("selectUser"));
+            User selectedUser = userDao.getById(selectedUserId);
+            userDao.delete(selectedUser);
         }
+
+        //reload page
+        req.setAttribute("users", userDao.getAll());
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/users.jsp");
+        dispatcher.forward(req, resp);
+
 
     }
 }
