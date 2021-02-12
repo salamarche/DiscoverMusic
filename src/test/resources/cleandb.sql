@@ -1,0 +1,2 @@
+DELETE FROM user WHERE id > 0;
+INSERT INTO user VALUES (1,'jcoyne','test@test.test','supersecret1'),(2,'fhensen','test@test.test','supersecret2'),(3,'bcurry','test@test.test','supersecret3'),(4,'kmack','test@test.test','supersecret4'),(5,'dklein','test@test.test','supersecret5'),(6,'dtillman','test@test.test','supersecret6');

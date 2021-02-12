@@ -27,30 +27,6 @@ public class UserDao {
     }
 
     /**
-     * update user
-     * @param user  User to be inserted or updated
-     */
-    public void saveOrUpdate(User user) {
-        Session session = sessionFactory.openSession();
-        session.saveOrUpdate(user);
-        session.close();
-    }
-
-    /**
-     * update user
-     * @param user  User to be inserted or updated
-     */
-    public int insert(User user) {
-        int id = 0;
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        id = (int)session.save(user);
-        transaction.commit();
-        session.close();
-        return id;
-    }
-
-    /**
      * Delete a user
      * @param user User to be deleted
      */
@@ -80,6 +56,30 @@ public class UserDao {
         session.close();
 
         return users;
+    }
+
+    /**
+     * update user
+     * @param user  User to be inserted or updated
+     */
+    public void saveOrUpdate(User user) {
+        Session session = sessionFactory.openSession();
+        session.saveOrUpdate(user);
+        session.close();
+    }
+
+    /**
+     * update user
+     * @param user  User to be inserted or updated
+     */
+    public int insert(User user) {
+        int id = 0;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        id = (int)session.save(user);
+        transaction.commit();
+        session.close();
+        return id;
     }
 
     /**
