@@ -18,6 +18,23 @@ public class User {
     private String email;
     private String password;
 
+    /**
+     * Instantiates a new user
+     */
+    public User() {}
+
+    /**
+     * Instantiates a new user
+     * @param userName the user name
+     * @param email the user email
+     * @param password the user password
+     */
+    public User(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+
+    }
 
     public void setId(int id) { this.id = id; }
 
