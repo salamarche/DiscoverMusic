@@ -1,4 +1,6 @@
 <%@include file="taglib.jsp"%>
+<%@include file="head.jsp"%>
+<%@include file="header.jsp"%>
 <html>
 <body>
 <h2>Indie Project Links</h2>
