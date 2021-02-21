@@ -1,6 +1,7 @@
 package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.*;
 
 
 @Entity(name = "User") //class name
@@ -16,6 +17,9 @@ public class User {
     private String userName;
     private String email;
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "engagedUsers")
+    private Set<Artist> artistsEngagedByUser;
 
     /**
      * Instantiates a new user
@@ -33,6 +37,14 @@ public class User {
         this.email = email;
         this.password = password;
 
+    }
+
+    public Set<Artist> getArtistsEngagedByUser() {
+        return artistsEngagedByUser;
+    }
+
+    public void setArtistsEngagedByUser(Set<Artist> artistsEngagedByUser) {
+        this.artistsEngagedByUser = artistsEngagedByUser;
     }
 
     public void setId(int id) { this.id = id; }
