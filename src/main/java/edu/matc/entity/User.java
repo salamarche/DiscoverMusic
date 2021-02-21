@@ -19,7 +19,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "engagedUsers")
-    private Set<Artist> artistsEngagedByUser;
+    private Set<Artist> artistsEngagedByUser = new HashSet<>();
 
     /**
      * Instantiates a new user

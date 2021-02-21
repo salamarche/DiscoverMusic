@@ -28,12 +28,12 @@ public class Artist {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "artist_engagement",
             joinColumns = {
-                @JoinColumn(name = "artist_id", nullable = false, updatable = false)
+                @JoinColumn(name = "artist_id"/*, nullable = false, updatable = false*/)
             },
             inverseJoinColumns = {
-                @JoinColumn(name = "user_id", nullable = false, updatable = false)
+                @JoinColumn(name = "user_id"/*, nullable = false, updatable = false*/)
              })
-    private Set<User> engagedUsers;
+    private Set<User> engagedUsers = new HashSet<>();
 
     /**
      *
