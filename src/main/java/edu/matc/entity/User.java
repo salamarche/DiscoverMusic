@@ -18,7 +18,7 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "engagedUsers")
+    @OneToMany(mappedBy = "artist")
     private Set<Artist> artistsEngagedByUser = new HashSet<>();
 
     /**

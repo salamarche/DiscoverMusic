@@ -25,14 +25,7 @@ public class Artist {
     private String location;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "artist_engagement",
-            joinColumns = {
-                @JoinColumn(name = "artist_id"/*, nullable = false, updatable = false*/)
-            },
-            inverseJoinColumns = {
-                @JoinColumn(name = "user_id"/*, nullable = false, updatable = false*/)
-             })
+    @OneToMany(mappedBy = "artist")
     private Set<User> engagedUsers = new HashSet<>();
 
     /**
