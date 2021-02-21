@@ -30,9 +30,11 @@ class GenericDaoTest {
         assertNotNull(retrievedUser);
         assert(retrievedUser.getUserName().equals("jcoyne"));
 
+
         Artist retrievedArtist = (Artist)artistDao.getById(1);
         assertNotNull(retrievedArtist);
         assert(retrievedArtist.getArtistName().equals("DJ Test"));
+
 
     }
 

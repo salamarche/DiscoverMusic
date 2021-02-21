@@ -18,8 +18,9 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "artist")
-    private Set<Artist> artistsEngagedByUser = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
     /**
      * Instantiates a new user
@@ -39,12 +40,12 @@ public class User {
 
     }
 
-    public Set<Artist> getArtistsEngagedByUser() {
-        return artistsEngagedByUser;
+    public Set<ArtistEngagement> getArtistUserEngagement() {
+        return artistUserEngagement;
     }
 
-    public void setArtistsEngagedByUser(Set<Artist> artistsEngagedByUser) {
-        this.artistsEngagedByUser = artistsEngagedByUser;
+    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
+        this.artistUserEngagement = artistUserEngagement;
     }
 
     public void setId(int id) { this.id = id; }

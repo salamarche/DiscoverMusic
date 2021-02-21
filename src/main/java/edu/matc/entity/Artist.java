@@ -24,9 +24,8 @@ public class Artist {
 
     private String location;
 
-
     @OneToMany(mappedBy = "artist")
-    private Set<User> engagedUsers = new HashSet<>();
+    private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
     /**
      *
@@ -44,20 +43,15 @@ public class Artist {
         this.location = location;
     }
 
-
-    /**
-     * @return
-     */
-    public Set<User> getEngagedUsers() {
-        return engagedUsers;
+    public Set<ArtistEngagement> getArtistUserEngagement() {
+        return artistUserEngagement;
     }
 
-    /**
-     * @param engagedUsers
-     */
-    public void setEngagedUsers(Set<User> engagedUsers) {
-        this.engagedUsers = engagedUsers;
+    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
+        this.artistUserEngagement = artistUserEngagement;
     }
+
+
 
     /**
      * @return
