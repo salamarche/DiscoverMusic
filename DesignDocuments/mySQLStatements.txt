@@ -1,6 +1,4 @@
-use music;
-
-DROP TABLE IF EXISTS user_history;
+DROP TABLE IF EXISTS artist_engagement;
 DROP TABLE IF EXISTS artist;
 DROP TABLE IF EXISTS user;
 
@@ -17,27 +15,29 @@ CREATE TABLE artist (
 
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 soundcloud_id VARCHAR(100),
-engagement_count INT
+artist_name VARCHAR(100),
+location VARCHAR(100)
 
 );
 
-CREATE TABLE user_history (
+CREATE TABLE artist_engagement (
 artist_id INT,
 user_id INT,
-date DATE
+engagement_date DATETIME
 );
 
-ALTER TABLE user_history ADD CONSTRAINT FK_user_id
+ALTER TABLE artist_engagement ADD CONSTRAINT FK_user_id
 	FOREIGN KEY (user_id) REFERENCES user(id);
 
-ALTER TABLE user_history ADD CONSTRAINT FK_artist_id
+ALTER TABLE artist_engagement ADD CONSTRAINT FK_artist_id
 	FOREIGN KEY (artist_id) REFERENCES artist(id);
 
 
-DELETE FROM user WHERE id > 1 ;
-INSERT INTO user (user_name, email, password)
-VALUES ("Test", "test@test.com", "test");
-INSERT INTO user (user_name, email, password)
-VALUES ("Testy McTestFace", "testface@test.com", "test");
+INSERT INTO user (user_name, email, password) 
+    VALUES ("Test User 1", "test@test.com", "test"), ("Test User 2", "testface@test.com", "test");
 
+INSERT INTO artist (artist_name, location) 
+    VALUES ("Test Artist 1", "CityName or Coordinates"), ("Test Artist 1", "CityName or Coordinates");
 
+INSERT INTO artist_engagement (artist_id, user_id, engagement_date) 
+    VALUES (1, 1, '2020-01-01 10:10:10'), (1,2,'2020-01-01 10:10:10');
