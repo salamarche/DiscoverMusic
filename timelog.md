@@ -8,7 +8,7 @@
 |02/11/2021|Implementing hibernate with User class. Added jsp for displaying users|3||
 |02/12/2021|Added UserDao Tests |1||
 |02/12/2021|Added delete user function to user display|1||
-|02/14/2020|Added additional UserDao Tests |1||
+|02/14/2021|Added additional UserDao Tests |1||
 |02/15/2021|Head and header JSPs added|.5||
 |2/21/2021|Updated database tables and cleandb script|.5||
 |2/21/2021|Created Artist entity|.75||
