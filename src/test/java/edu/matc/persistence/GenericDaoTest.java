@@ -15,13 +15,15 @@ class GenericDaoTest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     GenericDao userDao;
     GenericDao artistDao;
-    GenericDao artistEngagementDao;
+    GenericDao genericArtistEngagementDao;
+    ArtistEngagementDao specialArtistEngagementDao;
 
     @BeforeEach
     void setUp() {
         userDao = new GenericDao(User.class);
         artistDao = new GenericDao(Artist.class);
-        artistEngagementDao = new GenericDao(ArtistEngagement.class);
+        genericArtistEngagementDao = new GenericDao(ArtistEngagement.class);
+        specialArtistEngagementDao = new ArtistEngagementDao();
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
 
@@ -43,18 +45,7 @@ class GenericDaoTest {
     }
 
     @Test
-        //TODO: this works for artist and user but it won't work the same for artist engagement
-    /**
-     *
-     */
     void getByPropertyEqualSuccess() {
-        /*
-        User user = (User)userDao.getById(1);
-        String propertyName = "artist";
-        List<ArtistEngagement> list = artistEngagementDao.getByPropertyEqual(propertyName, user);
-        logger.info(list);
-        logger.info(list.size());
-        */
 
         String propertyName = "soundcloudId";
         String value = "soundcloudId100";
@@ -66,14 +57,41 @@ class GenericDaoTest {
     }
 
     @Test
-    void deleteWithCascadeSuccess() {
-        //userDao.delete((User)userDao.getById(1));
-        //assertNull((User)userDao.getById(1));
+    void deleteUserWithSuccess() {
 
+        User user = (User)userDao.getById(1);
+        List<ArtistEngagement> artistEngagementList = specialArtistEngagementDao.getArtistEngagementByUser(user);
+        assert(artistEngagementList.size() == 2);
 
-        //artistDao.delete((Artist)artistDao.getById(1));
-        //assertNull((Artist)artistDao.getById(1));
+        for (ArtistEngagement each : artistEngagementList) {
+            genericArtistEngagementDao.delete(each);
+        }
 
+        List<ArtistEngagement> artistEngagementListAfterDelete = specialArtistEngagementDao.getArtistEngagementByUser(user);
+        assert(artistEngagementListAfterDelete.size() == 0);
+
+        userDao.delete(user);
+        assertNull((User)userDao.getById(1));
+
+    }
+
+    @Test
+    void deleteArtistWithSuccess() {
+
+        Artist artist = (Artist)artistDao.getById(1);
+        List<ArtistEngagement> artistEngagementList = specialArtistEngagementDao.getArtistEngagementByArtist(artist);
+        logger.info(artistEngagementList.size());
+        assert(artistEngagementList.size() == 3);
+
+        for (ArtistEngagement each : artistEngagementList) {
+            genericArtistEngagementDao.delete(each);
+        }
+
+        List<ArtistEngagement> artistEngagementListAfterDelete = specialArtistEngagementDao.getArtistEngagementByArtist(artist);
+        assert(artistEngagementListAfterDelete.size() == 0);
+
+        artistDao.delete(artist);
+        assertNull((Artist)artistDao.getById(1));
 
     }
 
