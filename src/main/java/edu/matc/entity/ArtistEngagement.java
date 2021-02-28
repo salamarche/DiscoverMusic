@@ -31,6 +31,13 @@ public class ArtistEngagement {
         this.user = user;
         this.engagementDate = engagementDate;
     }
+    public ArtistEngagementId getId() {
+        return id;
+    }
+
+    public void setId(ArtistEngagementId id) {
+        this.id = id;
+    }
     public User getUser() {
         return user;
     }
