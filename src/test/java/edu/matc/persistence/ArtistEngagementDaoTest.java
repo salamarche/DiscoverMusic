@@ -29,6 +29,21 @@ class ArtistEngagementDaoTest {
     }
 
     @Test
+    void getByCompositeId() {
+        Artist artist = (Artist)artistDao.getById(1);
+        User user = (User)userDao.getById(1);
+        ArtistEngagement artistEngagement = artistEngagementDao.getByCompositeId(artist, user);
+        assertNotNull(artistEngagement);
+
+        Artist retrievedArtist = artistEngagement.getArtist();
+        User retrievedUser = artistEngagement.getUser();
+
+        assert(retrievedUser.getId() == 1);
+        assert(retrievedUser.getId() == 1);
+
+    }
+
+    @Test
     void getArtistEngagementByArtist() {
         Artist artist = (Artist)artistDao.getById(1);
         List<ArtistEngagement> artistEngagementList = artistEngagementDao.getArtistEngagementByArtist(artist);
