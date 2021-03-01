@@ -53,7 +53,6 @@ class GenericDaoTest {
         //logger.info(list.size());
         assert(list.size() == 1);
 
-
     }
 
     @Test
@@ -92,10 +91,20 @@ class GenericDaoTest {
 
         artistDao.delete(artist);
         assertNull((Artist)artistDao.getById(1));
-
     }
+
 
     @Test
     void getAll() {
+        List<User> users = userDao.getAll();
+        assertEquals(6, users.size());
+
+        List<Artist> artists = artistDao.getAll();
+        assertEquals(2, artists.size());
+
+        List<ArtistEngagement> artistEngagements = genericArtistEngagementDao.getAll();
+        assertEquals(4, artistEngagements.size());
+
+
     }
 }
