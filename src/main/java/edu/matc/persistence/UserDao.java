@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import javax.persistence.criteria.*;
 import java.util.List;
 
+//TODO Reconfig app for safe delete of UserDao
 public class UserDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
