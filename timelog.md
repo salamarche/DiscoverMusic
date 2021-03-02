@@ -14,3 +14,7 @@
 |2/21/2021|Created Artist entity|.75||
 |2/21/2021|Created GenericDao and began adding tests|1||
 |2/21/2021|Created ArtistEngagement entity and changed mapping|1.25||
+|2/28/2021|Created ArtistEngagementDAO for where generic won't work|.5||
+|2/28/2021|Testing for ArtistEngagementDAO and Generic |1.5||
+|2/28/2021|Deploy to AWS|3||
+|2/29/2021|Planning + App flow diagram| 1||

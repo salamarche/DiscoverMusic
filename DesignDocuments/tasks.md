@@ -2,32 +2,15 @@
 
 ## Set Up
 - [X] Wire frames
-- [ ] User stories
-- [ ] Journal
-- [ ] 
+- [X] User stories
+- [X] Time Log
+- [ ] App diagram 
 
 ## Database
-- [ ] design database
-- [ ] write script
-- [ ] seed data
-- [ ] configure hibernate
-
-### Tables
-- user
-  - id
-  - user_name
-  - email
-  - password
-- artist
-  - id
-  - soundcloud_id
-  - engagement_count (likes)
-  - other saved data from soundcloud???
-- user_history
-  - user_id
-  - artist_id
-  - date
-
+- [X] design database
+- [X] write script
+- [X] seed data
+- [X] configure hibernate
 
 
 ## Sign Up
