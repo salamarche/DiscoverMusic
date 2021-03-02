@@ -24,6 +24,12 @@ public class Artist {
 
     private String location;
 
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "artist")
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
@@ -43,14 +49,47 @@ public class Artist {
         this.location = location;
     }
 
+    /**
+     * @return
+     */
     public Set<ArtistEngagement> getArtistUserEngagement() {
         return artistUserEngagement;
     }
 
+    /**
+     * @param artistUserEngagement
+     */
     public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
         this.artistUserEngagement = artistUserEngagement;
     }
 
+    /**
+     * @return
+     */
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    /**
+     * @param avatarUrl
+     */
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    /**
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 
     /**
