@@ -1,7 +1,7 @@
 package edu.matc.controller;
 
 import edu.matc.entity.User;
-import edu.matc.persistence.UserDao;
+import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,11 +21,11 @@ public class EditUser extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userDao = new UserDao();
+        GenericDao userDao = new GenericDao(User.class);
         //delete a user
         if (req.getParameter("submit").equals("delete")) {
             Integer selectedUserId = Integer.parseInt(req.getParameter("selectUser"));
-            User selectedUser = userDao.getById(selectedUserId);
+            User selectedUser = (User)userDao.getById(selectedUserId);
             userDao.delete(selectedUser);
         }
 
