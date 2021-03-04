@@ -32,14 +32,14 @@
             <td>${user.id}</td>
             <td>${user.userName}</td>
             <td>${user.email}</td>
-            <td>${user.role}</td>
+            <td>${user.userRole}</td>
             <td><input type="radio" value="${user.id}" name="selectUser" /></td>
           </tr>
         </c:forEach>
         </tbody>
       </table>
 
-      <button type="submit" name="submit" value="delete">Delete User</button>
+      <button type="submit" class="btn btn-danger" name="submit" value="delete">Delete User</button>
     </form>
   </div>
 
@@ -74,7 +74,7 @@
         </tbody>
       </table>
 
-      <button type="submit" name="submit" value="delete">Delete User</button>
+      <button class="btn btn-danger" type="submit" name="submit" value="delete">Delete Artist</button>
     </form>
   </div>
 
