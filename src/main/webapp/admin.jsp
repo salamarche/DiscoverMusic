@@ -40,6 +40,7 @@
       </table>
 
       <button type="submit" class="btn btn-danger" name="submit" value="delete">Delete User</button>
+      <% //TODO Add update user and update artist action + page %>
     </form>
   </div>
 
@@ -75,6 +76,7 @@
       </table>
 
       <button class="btn btn-danger" type="submit" name="submit" value="delete">Delete Artist</button>
+      <% //TODO add editArtist controller %>
     </form>
   </div>
 

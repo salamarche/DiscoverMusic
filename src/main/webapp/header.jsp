@@ -5,7 +5,7 @@
             <div>
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sign In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Sign In</a></li>
                 </ul>
             </div>
 
