@@ -19,3 +19,4 @@
 |2/28/2021|Deploy to AWS|3||
 |2/29/2021|Planning + App flow diagram| 1||
 |3/2/2021|Refactored to remove userDao|1|Todo: refactor and remove ArtistEngagementDao|
+|3/4/2021|Redid lost work :( <br> Added login jsps + servlets|1||
