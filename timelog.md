@@ -18,3 +18,4 @@
 |2/28/2021|Testing for ArtistEngagementDAO and Generic |1.5||
 |2/28/2021|Deploy to AWS|3||
 |2/29/2021|Planning + App flow diagram| 1||
+|3/2/2021|Refactored to remove userDao|1|Todo: refactor and remove ArtistEngagementDao|
