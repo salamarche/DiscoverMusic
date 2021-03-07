@@ -12,17 +12,18 @@
 <body>
 <%@include file="header.jsp"%>
     <div>
-        <form class="form" id="loginForm" action="loginAction">
+        <form class="form" id="loginForm" action="j_security_check" method="POST">
             <div class="form-group">
-                <label class="form-check-label" for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label class="form-check-label" for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="j_username" required>
             </div>
 
             <div class="form-group">
                 <label class="form-check-label" for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="j_password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+            <input type="submit" value="Log In">
         </form>
     </div>
 
