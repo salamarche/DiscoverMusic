@@ -23,7 +23,7 @@ public class User {
     @Column(name = "user_role")
     private String userRole;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
     /**

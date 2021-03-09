@@ -4,10 +4,13 @@ import edu.matc.entity.*;
 import edu.matc.test.util.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -106,5 +109,27 @@ class GenericDaoTest {
         assertEquals(4, artistEngagements.size());
 
 
+    }
+
+    @Test
+    void getPreferredArtistsByUser() {
+        User user = (User)userDao.getById(1);
+        Set<ArtistEngagement> engagements = user.getArtistUserEngagement();
+
+        assert(engagements.size() == 2);
+        /*
+        logger.info(engagements.size());
+        for (ArtistEngagement engagement : engagements) {
+            Artist artist = engagement.getArtist();
+            logger.info(artist.getArtistName());
+        }
+        */
+    }
+
+    @Test
+    void engagementByArtist() {
+        Artist artist = (Artist)artistDao.getById(1);
+        Set<ArtistEngagement> engagements = artist.getArtistUserEngagement();
+        assert(engagements.size() == 3);
     }
 }
