@@ -12,7 +12,7 @@
 <body>
 <%@include file="header.jsp"%>
     <div id="searchContainer">
-        <form class="form" id="" action="" method="GET" >
+        <form class="form" id="searchArtistsForm" action="discoverAction" method="GET" >
             <input class="form-control" type="text" id="city" name="city" placeholder="city">
             <input class="form-control" type="text" id="country" name="country" placeholder="country">
             <input type="submit" value="Search for Artists">
