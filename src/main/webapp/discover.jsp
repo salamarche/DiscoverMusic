@@ -15,7 +15,8 @@
         <form class="form" id="searchArtistsForm" action="discoverAction" method="GET" >
             <input class="form-control" type="text" id="city" name="city" placeholder="city">
             <input class="form-control" type="text" id="country" name="country" placeholder="country">
-            <input type="submit" value="Search for Artists">
+            <button class="btn btn-info" id="locateUser">Get Current Location</button>
+            <input class="btn btn-primary" type="submit" value="Search for Artists">
         </form>
     </div>
 
@@ -23,6 +24,14 @@
 
     </div>
 
+    <script>
+        locateUser = document.querySelector("#locateUser");
+        locateUser.addEventListener('click', () => {
+           navigator.geolocation.getCurrentPosition(function(position) {
+               console.log(position);
+           });
+        });
+    </script>
 
 
 </body>
