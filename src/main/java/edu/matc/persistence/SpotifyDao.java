@@ -45,6 +45,7 @@ public class SpotifyDao {
         }
 
         //Creating the POST request
+        /*
         try {
             request = HttpRequest.newBuilder()
                     .uri(new URI("https://accounts.spotify.com/api/token"))
@@ -54,6 +55,7 @@ public class SpotifyDao {
         } catch (URISyntaxException e) {
             logger.error("SpotifyDao/getAccessToken: URISyntaxException ..." + e);
         }
+        */
         return accessToken;
     }
 }
