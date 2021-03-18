@@ -11,8 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Properties;
 
-public class SpotifyAPIDao {
+import edu.matc.utilities.*;
+
+public class SpotifyAPIDao implements PropertiesLoader {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     private final SpotifyApi spotifyApi;
@@ -22,13 +25,28 @@ public class SpotifyAPIDao {
      * //TODO load in this from a properties file
      */
     public SpotifyAPIDao() {
-        String clientId = "3845f1bfe86644f0921f6e925e791c5e";
-        String clientSecret = "522b75c39ab64b10b51fc5feebad8eb8";
+
+        String clientId = null;
+        String clientSecret = null;
+
+        Properties spotifyProperties = new Properties();
+        try {
+            spotifyProperties = loadProperties("/spotifyAPI.properties");
+            clientId = spotifyProperties.getProperty("clientId");
+            clientSecret = spotifyProperties.getProperty("clientSecret");
+
+        } catch (IOException iOException) {
+            logger.error("SpotifyAPIDao failed to load properties..." + iOException);
+
+        } catch (Exception exception) {
+            logger.error("SpotifyAPIDao failed to load properties..." + exception);
+        }
 
         spotifyApi = new SpotifyApi.Builder()
                 .setClientId(clientId)
                 .setClientSecret(clientSecret)
                 .build();
+
     }
 
     /**
