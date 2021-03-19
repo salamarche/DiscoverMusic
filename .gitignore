@@ -52,4 +52,5 @@ fabric.properties
 aws.properties
 
 #
-spotifyAPI.properties
+src/main/resources/spotifyAPI.properties
+src/main/resources/awsCredentials.properties

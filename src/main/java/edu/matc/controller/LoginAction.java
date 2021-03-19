@@ -27,6 +27,7 @@ public class LoginAction extends HttpServlet {
         String emailEntered = req.getParameter("email");
         String passwordEntered = req.getParameter("password");
 
+        //TODO login
 
         //forward to index
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
