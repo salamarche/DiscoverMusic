@@ -1,5 +1,7 @@
 package edu.matc.controller;
 
+import com.amazonaws.services.cognitoidp.model.SignUpResult;
+import edu.matc.authentication.CognitoClient;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
@@ -24,9 +26,15 @@ public class SignupAction extends HttpServlet {
         GenericDao userDao = new GenericDao(User.class);
 
 
-        String emailEntered = req.getParameter("email");
+        String emailEntered = req.getParameter("username");
         String password1Entered = req.getParameter("password");
         String password2Entered = req.getParameter("confirmPassword");
+
+        if (password1Entered.equals(password2Entered)) {
+            CognitoClient client = new CognitoClient();
+            SignUpResult result = client.signUp("NA", emailEntered, password1Entered);
+            logger.info(result.toString());
+        }
 
 
 

@@ -55,6 +55,7 @@ public class CognitoClient implements PropertiesLoader {
     }
 
     public SignUpResult signUp(String name, String email, String password) {
+
         SignUpRequest request = new SignUpRequest().withClientId(clientId ).withUsername(email).withPassword(password);
         SignUpResult result = client.signUp(request);
         return result;
