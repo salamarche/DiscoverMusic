@@ -64,6 +64,7 @@ class GenericDaoTest {
         User user = (User)userDao.getById(1);
 
         //Old way
+        /*
         List<ArtistEngagement> artistEngagementList = specialArtistEngagementDao.getArtistEngagementByUser(user);
         for (ArtistEngagement each : artistEngagementList) {
             genericArtistEngagementDao.delete(each);
@@ -71,11 +72,11 @@ class GenericDaoTest {
         assert(artistEngagementList.size() == 2);
         List<ArtistEngagement> artistEngagementListAfterDelete = specialArtistEngagementDao.getArtistEngagementByUser(user);
         assert(artistEngagementListAfterDelete.size() == 0);
-
+        */
 
 
         //New way - Does NOT work
-        /*
+
         Set<ArtistEngagement> artistEngagementSet = user.getArtistUserEngagement();
         assert(artistEngagementSet.size() == 2);
 
@@ -83,9 +84,10 @@ class GenericDaoTest {
             genericArtistEngagementDao.delete(each);
 
         }
-        Set<ArtistEngagement> artistEngagementSetAfterDelete = user.getArtistUserEngagement();
+        User userAfterDelete = (User)userDao.getById(1);
+        Set<ArtistEngagement> artistEngagementSetAfterDelete = userAfterDelete.getArtistUserEngagement();
         assert(artistEngagementSetAfterDelete.size() == 0);
-        */
+
 
         userDao.delete(user);
         assertNull((User)userDao.getById(1));
