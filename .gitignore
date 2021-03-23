@@ -53,3 +53,4 @@ aws.properties
 
 #
 spotifyAPI.properties
+awsCredentials.properties
