@@ -12,7 +12,7 @@
 <body>
 <%@include file="header.jsp"%>
     <div>
-        <form class="form" id="loginForm" action="j_security_check" method="POST">
+        <form class="form" id="loginForm" action="" method="POST">
             <div class="form-group">
                 <label class="form-check-label" for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="j_username" required>
