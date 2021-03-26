@@ -164,6 +164,13 @@
       <version>1.0.0</version>
     </dependency>
 
+    <!--jose.4.j -->
+    <dependency>
+      <groupId>org.bitbucket.b_c</groupId>
+      <artifactId>jose4j</artifactId>
+      <version>0.7.6</version>
+    </dependency>
+
   </dependencies>
 
 
