@@ -1,5 +1,7 @@
 package edu.matc.controller;
 
+import edu.matc.entity.User;
+import edu.matc.persistence.GenericDao;
 import edu.matc.utilities.PropertiesLoader;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @WebServlet(
@@ -70,6 +74,8 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         String clientId = null;
         String httpsJwks = null;
         String expectedIssuer = null;
+        String email = null;
+        String username = null;
         Properties awsCredentails = new Properties();
         try {
             awsCredentails = loadProperties("/awsCredentials.properties");
@@ -117,6 +123,14 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             //  Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(jwt);
             logger.info("JWT validation succeeded! " + jwtClaims);
+            Map<String, Object> claims = jwtClaims.getClaimsMap();
+
+            //logger.info(claims.get("email"));
+            //logger.info(claims.get("cognito:username"));
+            email = (String) claims.get("email");
+            username = (String) claims.get("cognito:username");
+            lookUpUser(email, username);
+
         } catch (InvalidJwtException e) {
             // InvalidJwtException will be thrown, if the JWT failed processing or validation in anyway.
             // Hopefully with meaningful explanations(s) about what went wrong.
@@ -133,7 +147,22 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
                 logger.error("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
             }
+        }
+    }
+
+    public void lookUpUser(String email, String username) {
+        GenericDao dao = new GenericDao(User.class);
+
+        List<User> user =  dao.getByPropertyEqual("email", email);
+
+        if (user.size() == 1) {
+            logger.info("user found");
+
+        } else {
+            logger.info("new user!");
 
         }
+
+
     }
 }
