@@ -76,8 +76,8 @@ public class SpotifyAPIDao implements PropertiesLoader {
             // Set access token for further "spotifyApi" object usage
             spotifyApi.setAccessToken(clientCredentials.getAccessToken());
 
-            logger.info(clientCredentials.getAccessToken());
-            logger.info("Expires in: " + clientCredentials.getExpiresIn());
+            //logger.info(clientCredentials.getAccessToken());
+            //logger.info("Expires in: " + clientCredentials.getExpiresIn());
         } catch (IOException | SpotifyWebApiException e) {
             logger.error("Error: " + e.getMessage());
         } catch (org.apache.hc.core5.http.ParseException e) {
@@ -103,8 +103,8 @@ public class SpotifyAPIDao implements PropertiesLoader {
             artist = getArtistRequest.execute();
 
 
-            logger.info("Name: " + artist.getName());
-            logger.info("Spotify ID: " + artist.getId());
+            //logger.info("Name: " + artist.getName());
+            //logger.info("Spotify ID: " + artist.getId());
 
 
         } catch (IOException | SpotifyWebApiException | org.apache.hc.core5.http.ParseException e) {
