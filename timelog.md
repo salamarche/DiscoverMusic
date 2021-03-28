@@ -22,3 +22,11 @@
 |3/4/2021|Redid lost work :( <br> Added login jsps + servlets|1||
 |3/5/2021|Form authorization||TODO: customer error pages|1|
 |3/8/2021|Added generic dao tests for fetching user engagement|.5|Still need to delete the ArtistEngagementDao|
+|3/12/2021|Added user geolocation script|.5||
+|3/13/2021|Created new Dao for getting Spotify Access token|2||
+|3/14/2021|Implemented new Spotify Java wrapper <br> Added authorize client and get artist and get multiple artists|3||
+|3/18/2021|Cleaned up code and added in properties loader|.5||
+|3/19/2021|Debugging generic dao delete issue|1||
+|3/19/2021|AWS Cognito authentication research and branch implementation |4||
+|3/23/2021|Implement aws Cognito authentication flow|3|Need to decode token|
+|3/26/2021|Decoded JWT with Jose4J|2||
