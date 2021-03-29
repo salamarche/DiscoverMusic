@@ -55,7 +55,10 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         String accessToken = req.getParameter("accessToken");
         //logger.info("accessToken: " + accessToken);
 
-        decodeToken(idToken);
+        Map<String, Object> claims = decodeToken(idToken);
+        String email = (String) claims.get("email");
+        String username = (String) claims.get("cognito:username");
+        lookUpUser(email, username);
 
         //forward to index
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
@@ -70,13 +73,15 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
      * @param jwt Json Web Token aka id_token
      */
     @SneakyThrows
-    public void decodeToken(String jwt) {
+    public Map<String, Object> decodeToken(String jwt) {
         String clientId = null;
         String httpsJwks = null;
         String expectedIssuer = null;
         String email = null;
         String username = null;
+        Map<String, Object> claims = null;
         Properties awsCredentails = new Properties();
+
         try {
             awsCredentails = loadProperties("/awsCredentials.properties");
             clientId = awsCredentails.getProperty("clientId");
@@ -123,14 +128,10 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             //  Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(jwt);
             logger.info("JWT validation succeeded! " + jwtClaims);
-            Map<String, Object> claims = jwtClaims.getClaimsMap();
+            claims = jwtClaims.getClaimsMap();
 
             //logger.info(claims.get("email"));
             //logger.info(claims.get("cognito:username"));
-            email = (String) claims.get("email");
-            username = (String) claims.get("cognito:username");
-            lookUpUser(email, username);
-
         } catch (InvalidJwtException e) {
             // InvalidJwtException will be thrown, if the JWT failed processing or validation in anyway.
             // Hopefully with meaningful explanations(s) about what went wrong.
@@ -148,21 +149,33 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
                 logger.error("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
             }
         }
+
+        return claims;
     }
 
     public void lookUpUser(String email, String username) {
         GenericDao dao = new GenericDao(User.class);
 
-        List<User> user =  dao.getByPropertyEqual("email", email);
+        List<User> users =  dao.getByPropertyEqual("email", email);
+        User user = null;
 
-        if (user.size() == 1) {
+        if (users.size() == 1) {
             logger.info("user found");
+            user = users.get(0);
 
-        } else {
+        } else if (users.size() == 0) {
             logger.info("new user!");
+            user = new User();
+            user.setEmail(email);
+            user.setUserName(username);
+            user.setUserRole("general");
+            user.setPassword("WillRemoveThisSoon");
+            dao.saveOrUpdate(user);
+
 
         }
 
-
     }
+
+
 }
