@@ -30,3 +30,4 @@
 |3/19/2021|AWS Cognito authentication research and branch implementation |4||
 |3/23/2021|Implement aws Cognito authentication flow|3|Need to decode token|
 |3/26/2021|Decoded JWT with Jose4J|2||
+|3/28/2021|Finished login action servlet logic|3|Need to put some more logic into admin only pages|
