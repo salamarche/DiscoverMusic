@@ -17,11 +17,13 @@ import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.keys.resolvers.HttpsJwksVerificationKeyResolver;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -55,10 +57,15 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         String accessToken = req.getParameter("accessToken");
         //logger.info("accessToken: " + accessToken);
 
+        //decode token, retrieve user
         Map<String, Object> claims = decodeToken(idToken);
         String email = (String) claims.get("email");
         String username = (String) claims.get("cognito:username");
-        lookUpUser(email, username);
+        User user = lookUpUser(email, username);
+
+        //Add user to session
+        HttpSession session = req.getSession();
+        session.setAttribute("username", user.getUserName());
 
         //forward to index
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
@@ -153,7 +160,7 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         return claims;
     }
 
-    public void lookUpUser(String email, String username) {
+    public User lookUpUser(String email, String username) {
         GenericDao dao = new GenericDao(User.class);
 
         List<User> users =  dao.getByPropertyEqual("email", email);
@@ -172,8 +179,9 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             user.setPassword("WillRemoveThisSoon");
             dao.saveOrUpdate(user);
 
-
         }
+
+        return user;
 
     }
 

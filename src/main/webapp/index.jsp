@@ -9,6 +9,7 @@
         <li><a href="discover">Discover Artists</a></li>
     </ul>
 
+    <p>Just testing login... <%= session.getAttribute("username")%> </p>
 
 </body>
 </html>
