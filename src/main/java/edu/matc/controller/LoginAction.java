@@ -42,20 +42,10 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String uriStr = req.getParameter("uri");
-        try {
-            URI uri = new URI(uriStr);
-            String fragment = uri.getFragment();
-            //logger.info("fragment: " + fragment);
-        } catch (URISyntaxException e) {
-            logger.error("LoginAction/doPost: Could not establish uri ... " + e);
-        }
         String hash = req.getParameter("hash");
-        //logger.info("hash: " + hash);
         String idToken = req.getParameter("idToken");
-        //logger.info("idToken: " + idToken);
         String accessToken = req.getParameter("accessToken");
-        //logger.info("accessToken: " + accessToken);
+
 
         //decode token, retrieve user
         Map<String, Object> claims = decodeToken(idToken);
@@ -176,7 +166,7 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             user.setEmail(email);
             user.setUserName(username);
             user.setUserRole("general");
-            user.setPassword("WillRemoveThisSoon");
+            user.setPassword("WillRemoveThisSoon"); //TODO Refactor db, and remove this
             dao.saveOrUpdate(user);
 
         }
