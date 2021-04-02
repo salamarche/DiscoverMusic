@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GenericDaoTest {
+class ArtistTest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     GenericDao userDao;
     GenericDao artistDao;
@@ -32,33 +32,33 @@ class GenericDaoTest {
 
     }
 
+
     @Test
-    void insert() {
+    void insertArtistWithSuccess() {
+        List<Artist> allArtistsBeforeInsert = artistDao.getAll();
+        Artist newArtist = new Artist("abc123", "jukeboxxx", "someLocation");
+        artistDao.insert(newArtist);
+        List<Artist> allArtistsAfterInsert = artistDao.getAll();
+        assert(allArtistsAfterInsert.size() == (allArtistsBeforeInsert.size() + 1));
+    }
 
-        List<User> allUsersBeforeInsert = userDao.getAll();
 
-        User newUser = new User("Chidi Anagonye", "chidi.anagonye@goodplace.hll", "123123", "user");
-        int id = userDao.insert(newUser);
+    @Test
+    void updateArtistWithSuccess() {
+        Artist artist = (Artist) artistDao.getById(1);
+        artist.setArtistName("NewName");
+        artistDao.saveOrUpdate(artist);
 
-        List<User> allUsersAfterInsert = userDao.getAll();
-
-        assert(allUsersAfterInsert.size() == (allUsersBeforeInsert.size() + 1));
-
+        Artist artistAfterUpdate = (Artist) artistDao.getById(1);
+        assert(artistAfterUpdate.getArtistName().equals("NewName"));
     }
 
     @Test
     void getByIdSuccess() {
 
-        User retrievedUser = (User)userDao.getById(1);
-        assertNotNull(retrievedUser);
-        assert(retrievedUser.getUserName().equals("jcoyne"));
-
-
         Artist retrievedArtist = (Artist)artistDao.getById(1);
         assertNotNull(retrievedArtist);
         assert(retrievedArtist.getArtistName().equals("DJ Test"));
-
-
     }
 
     @Test
@@ -67,31 +67,9 @@ class GenericDaoTest {
         String propertyName = "soundcloudId";
         String value = "soundcloudId100";
         List<Artist> list = artistDao.getByPropertyEqual(propertyName, value);
-        //logger.info(list.size());
         assert(list.size() == 1);
-
     }
 
-    @Test
-    void deleteUserWithSuccess() {
-
-        User user1 = (User)userDao.getById(1);
-        Set<ArtistEngagement> artistEngagementSet1 = user1.getArtistUserEngagement();
-        assert(artistEngagementSet1.size() == 2);
-
-        for (ArtistEngagement each : artistEngagementSet1) {
-            artistEngagementDao.delete(each);
-
-        }
-        User user2 = (User)userDao.getById(1);
-        Set<ArtistEngagement> artistEngagementSet2 = user2.getArtistUserEngagement();
-        assert(artistEngagementSet2.size() == 0);
-
-
-        userDao.delete(user1);
-        assertNull((User)userDao.getById(1));
-
-    }
 
     @Test
     void deleteArtistWithSuccess() {
@@ -115,30 +93,8 @@ class GenericDaoTest {
 
     @Test
     void getAll() {
-        List<User> users = userDao.getAll();
-        assertEquals(6, users.size());
-
         List<Artist> artists = artistDao.getAll();
         assertEquals(2, artists.size());
-
-        List<ArtistEngagement> artistEngagements = artistEngagementDao.getAll();
-        assertEquals(4, artistEngagements.size());
-
-
     }
 
-    @Test
-    void getPreferredArtistsByUser() {
-        User user = (User)userDao.getById(1);
-        Set<ArtistEngagement> engagements = user.getArtistUserEngagement();
-
-        assert(engagements.size() == 2);
-    }
-
-    @Test
-    void engagementByArtist() {
-        Artist artist = (Artist)artistDao.getById(1);
-        Set<ArtistEngagement> engagements = artist.getArtistUserEngagement();
-        assert(engagements.size() == 3);
-    }
 }

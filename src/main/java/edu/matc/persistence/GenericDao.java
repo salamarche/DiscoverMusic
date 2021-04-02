@@ -36,6 +36,7 @@ public class GenericDao<T> {
      *
      * @param entity entity to be inserted
      */
+    /*
     public int insert(T entity) {
         int id = 0;
         Session session = getSession();
@@ -44,6 +45,16 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
         return id;
+    }
+     */
+
+    public void insert(T entity) {
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(entity);
+        transaction.commit();
+        session.close();
+
     }
 
     /**
