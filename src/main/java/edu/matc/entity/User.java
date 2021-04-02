@@ -37,10 +37,11 @@ public class User {
      * @param email the user email
      * @param password the user password
      */
-    public User(String userName, String email, String password) {
+    public User(String userName, String email, String password, String role) {
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.userRole = role;
 
     }
 
