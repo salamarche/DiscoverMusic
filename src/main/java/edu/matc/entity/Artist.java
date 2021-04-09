@@ -21,8 +21,9 @@ public class Artist {
     @Column(name = "artist_name")
     private String artistName;
 
-    @Column(name = "city_id")
-    private int cityId;
+    @ManyToOne
+    @JoinColumn(name="city_id")
+    private City city;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
@@ -137,15 +138,15 @@ public class Artist {
     /**
      * @return
      */
-    public int getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
     /**
-     * @param cityId
+     * @param city
      */
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
 
