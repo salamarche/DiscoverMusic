@@ -20,12 +20,11 @@ public class CountryTest {
 
 
     GenericDao countryDao;
-    GenericDao regionDao;
+
 
     @BeforeEach
     void setUp() {
         countryDao = new GenericDao(Country.class);
-        regionDao = new GenericDao(Region.class);
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
     }
