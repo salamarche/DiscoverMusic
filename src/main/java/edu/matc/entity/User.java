@@ -16,9 +16,6 @@ public class User {
     @Column(name = "user_name")
     private String userName;
     private String email;
-    private String password;
-
-
 
     @Column(name = "user_role")
     private String userRole;
@@ -35,12 +32,11 @@ public class User {
      * Instantiates a new user
      * @param userName the user name
      * @param email the user email
-     * @param password the user password
+     *
      */
-    public User(String userName, String email, String password, String role) {
+    public User(String userName, String email, String role) {
         this.userName = userName;
         this.email = email;
-        this.password = password;
         this.userRole = role;
 
     }
@@ -88,16 +84,6 @@ public class User {
      * @return
      */
     public String getEmail() { return email; }
-
-    /**
-     * @param password
-     */
-    public void setPassword(String password) {this.password = password; }
-
-    /**
-     * @return
-     */
-    public String getPassword() { return password; }
 
     /**
      * @return

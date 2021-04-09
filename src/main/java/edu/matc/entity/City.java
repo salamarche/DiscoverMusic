@@ -11,13 +11,8 @@ public class City {
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-
     private String cityName;
-
-
     private String lat;
-
-
     private String lng;
 
     @ManyToOne
