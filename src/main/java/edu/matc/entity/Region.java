@@ -23,6 +23,7 @@ public class Region {
     private Country country;
 
 
+
     @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
     private Set<City> cities;
 
@@ -52,5 +53,12 @@ public class Region {
         this.country = country;
     }
 
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+    }
 
 }
