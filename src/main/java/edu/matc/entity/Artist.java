@@ -36,7 +36,6 @@ public class Artist {
     /**
      *
      */
-    //TODO refactor from soundcloud to spotify naming convention
     public Artist() {}
 
     /**
