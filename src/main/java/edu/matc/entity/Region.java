@@ -26,6 +26,8 @@ public class Region {
     @OneToMany(mappedBy = "region")
     private Set<City> cities;
 
+    public Region() {}
+
     public int getId() {
         return id;
     }
