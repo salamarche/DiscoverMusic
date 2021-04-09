@@ -3,6 +3,7 @@ package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "City")
 @Table(name = "city")
@@ -18,6 +19,11 @@ public class City {
     @ManyToOne
     @JoinColumn(name="regionId", nullable = false)
     private Region region;
+
+    @OneToMany(mappedBy = "city")
+    private Set<Artist> artists;
+
+    public City() {}
 
     public int getId() {
         return id;
@@ -57,5 +63,13 @@ public class City {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 }
