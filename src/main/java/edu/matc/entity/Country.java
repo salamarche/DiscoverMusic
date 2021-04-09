@@ -4,6 +4,7 @@ package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "Country")
 @Table(name = "country")
@@ -21,6 +22,8 @@ public class Country {
     @Column(name = "iso3")
     private String iso3;
 
+    @OneToMany(mappedBy = "country")
+    private Set<Region> regions;
 
     public int getId() {
         return id;
