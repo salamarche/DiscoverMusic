@@ -1,5 +1,4 @@
 package edu.matc.entity;
-import edu.matc.entity.User;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.*;
@@ -16,13 +15,14 @@ public class Artist {
     @GeneratedValue(strategy=GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-    @Column(name = "soundcloud_id")
-    private String soundcloudId;
+    @Column(name = "spotify_id")
+    private String spotifyId;
 
     @Column(name = "artist_name")
     private String artistName;
 
-    private String location;
+    @Column(name = "city_id")
+    private int cityId;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
@@ -42,12 +42,12 @@ public class Artist {
     /**
      * @param soundcloudId
      * @param artistName
-     * @param location
+     *
      */
-    public Artist(String soundcloudId, String artistName, String location) {
-        this.soundcloudId = soundcloudId;
+    public Artist(String soundcloudId, String artistName) {
+        this.spotifyId = soundcloudId;
         this.artistName = artistName;
-        this.location = location;
+
     }
 
     /**
@@ -110,15 +110,15 @@ public class Artist {
     /**
      * @return
      */
-    public String getSoundcloudId() {
-        return soundcloudId;
+    public String getSpotifyId() {
+        return spotifyId;
     }
 
     /**
      * @param soundcloudId
      */
-    public void setSoundcloudId(String soundcloudId) {
-        this.soundcloudId = soundcloudId;
+    public void setSpotifyId(String soundcloudId) {
+        this.spotifyId = soundcloudId;
     }
 
     /**
@@ -138,15 +138,15 @@ public class Artist {
     /**
      * @return
      */
-    public String getLocation() {
-        return location;
+    public int getCityId() {
+        return cityId;
     }
 
     /**
-     * @param location
+     * @param cityId
      */
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
 
