@@ -20,7 +20,7 @@ public class City {
     @JoinColumn(name="regionId", nullable = false)
     private Region region;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
     private Set<Artist> artists;
 
     public City() {}

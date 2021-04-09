@@ -22,7 +22,7 @@ public class Country {
     @Column(name = "iso3")
     private String iso3;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER)
     private Set<Region> regions;
 
     public Country() {}
@@ -49,5 +49,13 @@ public class Country {
 
     public void setIso3(String iso3) {
         this.iso3 = iso3;
+    }
+
+    public Set<Region> getRegions() {
+        return regions;
+    }
+
+    public void setRegions(Set<Region> regions) {
+        this.regions = regions;
     }
 }
