@@ -1,2 +1,51 @@
-package edu.matc.entity;public class Region {
+package edu.matc.entity;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity(name = "Region")
+@Table(name = "region")
+
+public class Region {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int id;
+
+    @Column(name = "regionName")
+    private String regionName;
+
+
+    @ManyToOne
+    @JoinColumn(name="id", nullable = false)
+    private Country country;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+
 }
