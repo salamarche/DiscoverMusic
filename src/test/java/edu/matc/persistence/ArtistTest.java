@@ -64,8 +64,8 @@ class ArtistTest {
     @Test
     void getByPropertyEqualSuccess() {
 
-        String propertyName = "soundcloudId";
-        String value = "soundcloudId100";
+        String propertyName = "spotifyId";
+        String value = "id1";
         List<Artist> list = artistDao.getByPropertyEqual(propertyName, value);
         assert(list.size() == 1);
     }
