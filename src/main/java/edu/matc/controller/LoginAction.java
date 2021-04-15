@@ -56,6 +56,8 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         //Add user to session
         HttpSession session = req.getSession();
         session.setAttribute("username", user.getUserName());
+        session.setAttribute("userRole", user.getUserRole());
+        session.setAttribute("email", user.getEmail());
 
         //forward to index
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
