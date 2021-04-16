@@ -13,6 +13,7 @@ public class ArtistApplication extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add(ArtistService.class );
+        h.add(CountryRegionService.class);
         return h;
     }
 }
