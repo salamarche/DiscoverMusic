@@ -19,6 +19,10 @@
         <mapping class="edu.matc.entity.User"/>
         <mapping class="edu.matc.entity.Artist"/>
         <mapping class="edu.matc.entity.ArtistEngagement"/>
+        <mapping class="edu.matc.entity.Country"/>
+        <mapping class="edu.matc.entity.Region"/>
+        <mapping class="edu.matc.entity.City"/>
+
 
     </session-factory>
 </hibernate-configuration>

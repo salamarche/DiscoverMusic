@@ -1,5 +1,7 @@
 package edu.matc.controller;
 
+import edu.matc.entity.User;
+import edu.matc.persistence.GenericDao;
 import edu.matc.utilities.PropertiesLoader;
 import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
@@ -15,14 +17,18 @@ import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.keys.resolvers.HttpsJwksVerificationKeyResolver;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @WebServlet(
@@ -36,22 +42,20 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String uriStr = req.getParameter("uri");
-        try {
-            URI uri = new URI(uriStr);
-            String fragment = uri.getFragment();
-            //logger.info("fragment: " + fragment);
-        } catch (URISyntaxException e) {
-            logger.error("LoginAction/doPost: Could not establish uri ... " + e);
-        }
         String hash = req.getParameter("hash");
-        //logger.info("hash: " + hash);
         String idToken = req.getParameter("idToken");
-        //logger.info("idToken: " + idToken);
         String accessToken = req.getParameter("accessToken");
-        //logger.info("accessToken: " + accessToken);
 
-        decodeToken(idToken);
+
+        //decode token, retrieve user
+        Map<String, Object> claims = decodeToken(idToken);
+        String email = (String) claims.get("email");
+        String username = (String) claims.get("cognito:username");
+        User user = lookUpUser(email, username);
+
+        //Add user to session
+        HttpSession session = req.getSession();
+        session.setAttribute("username", user.getUserName());
 
         //forward to index
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
@@ -66,11 +70,15 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
      * @param jwt Json Web Token aka id_token
      */
     @SneakyThrows
-    public void decodeToken(String jwt) {
+    public Map<String, Object> decodeToken(String jwt) {
         String clientId = null;
         String httpsJwks = null;
         String expectedIssuer = null;
+        String email = null;
+        String username = null;
+        Map<String, Object> claims = null;
         Properties awsCredentails = new Properties();
+
         try {
             awsCredentails = loadProperties("/awsCredentials.properties");
             clientId = awsCredentails.getProperty("clientId");
@@ -117,6 +125,10 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             //  Validate the JWT and process it to the Claims
             JwtClaims jwtClaims = jwtConsumer.processToClaims(jwt);
             logger.info("JWT validation succeeded! " + jwtClaims);
+            claims = jwtClaims.getClaimsMap();
+
+            //logger.info(claims.get("email"));
+            //logger.info(claims.get("cognito:username"));
         } catch (InvalidJwtException e) {
             // InvalidJwtException will be thrown, if the JWT failed processing or validation in anyway.
             // Hopefully with meaningful explanations(s) about what went wrong.
@@ -133,7 +145,35 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
                 logger.error("JWT had wrong audience: " + e.getJwtContext().getJwtClaims().getAudience());
             }
+        }
+
+        return claims;
+    }
+
+    public User lookUpUser(String email, String username) {
+        GenericDao dao = new GenericDao(User.class);
+
+        List<User> users =  dao.getByPropertyEqual("email", email);
+        User user = null;
+
+        if (users.size() == 1) {
+            logger.info("user found");
+            user = users.get(0);
+
+        } else if (users.size() == 0) {
+            logger.info("new user!");
+            user = new User();
+            user.setEmail(email);
+            user.setUserName(username);
+            user.setUserRole("general");
+
+            dao.saveOrUpdate(user);
 
         }
+
+        return user;
+
     }
+
+
 }
