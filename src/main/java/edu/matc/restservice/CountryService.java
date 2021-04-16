@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Path("/countries")
-public class CountryRegionService {
+public class CountryService {
     private final Logger logger = LogManager.getLogger(this.getClass());
     @GET
     @Produces("application/json")
