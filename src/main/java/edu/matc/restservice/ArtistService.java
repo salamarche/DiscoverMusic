@@ -24,7 +24,7 @@ public class ArtistService {
         for (Artist artist : artists) {
             output += artist.getId() + "\n"
                     + artist.getArtistName() + "\n"
-                    + artist.getLocation() + "\n \n";
+                    + artist.getCity() + "\n \n";
 
         }
         return Response.status(200).entity(output).build();
@@ -40,7 +40,7 @@ public class ArtistService {
 
         output += artist.getId() + "\n"
                 + artist.getArtistName() + "\n"
-                + artist.getLocation() + "\n \n";
+                + artist.getCity() + "\n \n";
 
 
         return Response.status(200).entity(output).build();
