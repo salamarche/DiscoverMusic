@@ -14,6 +14,7 @@ public class ArtistApplication extends Application {
         HashSet h = new HashSet<Class<?>>();
         h.add(ArtistService.class );
         h.add(CountryService.class);
+        h.add(RegionService.class);
         return h;
     }
 }

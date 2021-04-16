@@ -3,6 +3,7 @@ package edu.matc.restservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.matc.entity.Country;
+import edu.matc.entity.Region;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 
 @Path("/countries")
@@ -21,7 +23,7 @@ public class CountryService {
     private final Logger logger = LogManager.getLogger(this.getClass());
     @GET
     @Produces("application/json")
-    public Response getCountryRegionData() throws JsonProcessingException {
+    public Response getCountryData() throws JsonProcessingException {
         GenericDao<Country> dao = new GenericDao<>(Country.class);
         List<Country> countries = dao.getAll();
         ObjectMapper mapper = new ObjectMapper();
@@ -36,6 +38,17 @@ public class CountryService {
             countryObject.put("id", c.getId());
             countryObject.put("name", c.getCountryName());
             countryObject.put("iso3", c.getIso3());
+
+            //Adding in regions
+            JSONArray regionArray = new JSONArray();
+            Set<Region> regions = c.getRegions();
+            for (Region r : regions) {
+                JSONObject regionObject = new JSONObject();
+                regionObject.put("id", r.getId());
+                regionObject.put("name", r.getRegionName());
+                regionArray.add(regionObject);
+            }
+            countryObject.put("Regions", regionArray);
             countryArray.add(countryObject);
         }
 
