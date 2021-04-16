@@ -20,6 +20,7 @@ public class Region {
 
     @ManyToOne
     @JoinColumn(name="countryId", nullable = false)
+    //@JsonIgnore
     private Country country;
 
 

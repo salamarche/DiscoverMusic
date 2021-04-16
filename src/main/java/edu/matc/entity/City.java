@@ -18,6 +18,7 @@ public class City {
 
     @ManyToOne
     @JoinColumn(name="regionId", nullable = false)
+    //@JsonIgnore
     private Region region;
 
     @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
