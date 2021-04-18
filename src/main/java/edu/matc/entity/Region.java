@@ -15,11 +15,11 @@ public class Region {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name = "regionName")
+    @Column(name = "region_name")
     private String regionName;
 
     @ManyToOne
-    @JoinColumn(name="countryId", nullable = false)
+    @JoinColumn(name="country_id", nullable = false)
     //@JsonIgnore
     private Country country;
 

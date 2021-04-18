@@ -17,6 +17,8 @@ public class ArtistEngagement {
     @ManyToOne
     @MapsId("artistId")
     private Artist artist;
+
+    @Column(name = "engagementDate")
     private LocalDateTime engagementDate;
 
     public ArtistEngagement() {
@@ -34,6 +36,7 @@ public class ArtistEngagement {
     public void setId(ArtistEngagementId id) {
         this.id = id;
     }
+
     public User getUser() {
         return user;
     }

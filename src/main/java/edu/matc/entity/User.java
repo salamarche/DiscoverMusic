@@ -12,8 +12,10 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
+    @Column(name="user_name")
     private String userName;
     private String email;
+    @Column(name="user_role")
     private String userRole;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)

@@ -16,7 +16,7 @@ public class Country {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name = "countryName")
+    @Column(name = "country_name")
     private String countryName;
 
     @Column(name = "iso3")

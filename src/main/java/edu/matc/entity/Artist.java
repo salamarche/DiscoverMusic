@@ -15,9 +15,13 @@ public class Artist {
     @GeneratedValue(strategy=GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
+    @Column(name="spotify_id")
     private String spotifyId;
+    @Column(name="artist_name")
     private String artistName;
+    @Column(name="avatar_url")
     private String avatarUrl;
+    @Column(name="description")
     private String description;
 
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
@@ -26,10 +30,10 @@ public class Artist {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "artist_location",
-            joinColumns = { @JoinColumn(name = "artistId") },
-            inverseJoinColumns = { @JoinColumn(name = "cityId") }
+            joinColumns = { @JoinColumn(name = "artist_id") },
+            inverseJoinColumns = { @JoinColumn(name = "city_id") }
     )
-    Set<City> cities = new HashSet<>();
+    private Set<City> cities = new HashSet<>();
 
 
     /**
@@ -159,19 +163,20 @@ public class Artist {
     }
 
     public void removeCity (City city) {
-        /*
+
         for(City c : this.cities) {
             if(c.getId() == city.getId()) {
                 this.cities.remove(c);
                 break;
             }
         }
-         */
 
+        /*
         if (this.cities.contains(city)) {
             this.cities.remove(city);
 
         }
+         */
         city.getArtists().remove(this);
     }
 

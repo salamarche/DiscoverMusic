@@ -13,12 +13,13 @@ public class City {
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
+    @Column(name = "city_name")
     private String cityName;
     private String lat;
     private String lng;
 
     @ManyToOne
-    @JoinColumn(name="regionId", nullable = false)
+    @JoinColumn(name="region_id", nullable = false)
     //@JsonIgnore
     private Region region;
 
