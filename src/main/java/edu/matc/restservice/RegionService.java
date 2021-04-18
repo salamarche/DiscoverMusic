@@ -2,7 +2,6 @@ package edu.matc.restservice;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.matc.entity.City;
 import edu.matc.entity.Country;
 import edu.matc.entity.Region;
 import edu.matc.persistence.GenericDao;
@@ -43,6 +42,7 @@ public class RegionService {
             regionObject.put("name", r.getRegionName());
 
             //Adding in cities
+            /*
             JSONArray cityArray = new JSONArray();
             Set<City> cities = r.getCities();
             for (City c : cities) {
@@ -52,6 +52,7 @@ public class RegionService {
                 cityArray.add(cityObject);
             }
             regionObject.put("Cities", cityArray);
+            */
             regionArray.add(regionObject);
         }
         json.put("Regions", regionArray);

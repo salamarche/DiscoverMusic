@@ -3,7 +3,6 @@ package edu.matc.restservice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.matc.entity.Country;
-import edu.matc.entity.Region;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +14,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Set;
 
 
 @Path("/countries")
@@ -40,6 +38,7 @@ public class CountryService {
             countryObject.put("iso3", c.getIso3());
 
             //Adding in regions
+            /*
             JSONArray regionArray = new JSONArray();
             Set<Region> regions = c.getRegions();
             for (Region r : regions) {
@@ -49,6 +48,7 @@ public class CountryService {
                 regionArray.add(regionObject);
             }
             countryObject.put("Regions", regionArray);
+            */
             countryArray.add(countryObject);
         }
 

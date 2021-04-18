@@ -15,6 +15,7 @@ public class ArtistApplication extends Application {
         h.add(ArtistService.class );
         h.add(CountryService.class);
         h.add(RegionService.class);
+        h.add(CityService.class);
         return h;
     }
 }

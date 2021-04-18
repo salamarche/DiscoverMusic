@@ -44,8 +44,14 @@
     </form>
 
     <script>
+        /*TODO: This doesn't have to be this hard! Get one HUGE json
+           with all data and use javascript to search the same object for each.
+           This should improve performance instead of making so many requests.
+        */
+
         let countryUrl = "http://localhost:8080/DiscoverMusic_war/services/countries";
         let regionUrl = "http://localhost:8080/DiscoverMusic_war/services/regions"
+        let cityUrl = "http://localhost:8080/DiscoverMusic_war/services/cities";
 
         const countryList = document.querySelector("#countryList");
         const regionList = document.querySelector("#regionList");
@@ -115,11 +121,10 @@
                 let countryId = findOptionId(countryList, selectedValue);
                 console.log(countryId);
 
-                //populate rgion dropdown
+                //populate region dropdown
                 let regionUrlWithValue = regionUrl + "/" + countryId;
                 getRequestJSON(regionUrlWithValue, (response) => {
                     let regions = response.Regions;
-                    let regionList = document.querySelector("#regionList");
 
                     for (i = 0; i < regions.length; i++ ) {
                         let region = regions[i];
@@ -138,14 +143,34 @@
             regionInput.addEventListener("change", () => {
                 console.log(regionInput.value);
                 //clear city options
+                let cityOptions = cityList.querySelectorAll("option");
+                cityOptions.forEach(o => o.remove());
 
                 //get value + associated id
+                let selectedValue = regionInput.value;
+                let regionId = findOptionId(regionList, selectedValue);
+                console.log(regionId);
 
                 //populate city dropdown
+                let cityUrlWithValue = cityUrl + "/" + regionId;
+                getRequestJSON(cityUrlWithValue, (response) => {
+                    let cities = response.Cities;
 
+                    for (i = 0; i < cities.length; i++ ) {
+                        let city = cities[i];
+                        let cityName = city.name;
+                        let cityId = city.id;
+
+                        let option = document.createElement("option");
+
+                        option.setAttribute("value", cityName);
+                        option.setAttribute("id", cityId);
+                        cityList.appendChild(option);
+                    }
+                });
 
             });
-        } //end of window.onload
+        }
     </script>
 </body>
 
