@@ -15,24 +15,22 @@ public class Artist {
     @GeneratedValue(strategy=GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-    @Column(name = "spotify_id")
     private String spotifyId;
-
-    @Column(name = "artist_name")
     private String artistName;
-
-    @ManyToOne
-    @JoinColumn(name="city_id")
-    private City city;
-
-    @Column(name = "avatar_url")
     private String avatarUrl;
-
-    @Column(name = "description")
     private String description;
 
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "artist_location",
+            joinColumns = { @JoinColumn(name = "artistId") },
+            inverseJoinColumns = { @JoinColumn(name = "cityId") }
+    )
+    Set<City> cities = new HashSet<>();
+
 
     /**
      *
@@ -50,19 +48,6 @@ public class Artist {
 
     }
 
-    /**
-     * @return
-     */
-    public Set<ArtistEngagement> getArtistUserEngagement() {
-        return artistUserEngagement;
-    }
-
-    /**
-     * @param artistUserEngagement
-     */
-    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
-        this.artistUserEngagement = artistUserEngagement;
-    }
 
     /**
      * @return
@@ -138,17 +123,57 @@ public class Artist {
     /**
      * @return
      */
-    public City getCity() {
-        return city;
+    public Set<ArtistEngagement> getArtistUserEngagement() {
+        return artistUserEngagement;
     }
 
     /**
-     * @param city
+     * @param artistUserEngagement
      */
-    public void setCity(City city) {
-        this.city = city;
+    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
+        this.artistUserEngagement = artistUserEngagement;
     }
 
+    /**
+     * @return
+     */
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    /**
+     * @param cities
+     */
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+    }
+
+    /**
+     * Adds a location to the Artist's set of locations
+     * @param city
+     */
+    public void addCity (City city) {
+        this.cities.add(city);
+        city.getArtists().add(this);
+
+    }
+
+    public void removeCity (City city) {
+        /*
+        for(City c : this.cities) {
+            if(c.getId() == city.getId()) {
+                this.cities.remove(c);
+                break;
+            }
+        }
+         */
+
+        if (this.cities.contains(city)) {
+            this.cities.remove(city);
+
+        }
+        city.getArtists().remove(this);
+    }
 
 
 }

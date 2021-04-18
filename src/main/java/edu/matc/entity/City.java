@@ -3,6 +3,7 @@ package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "City")
@@ -21,8 +22,8 @@ public class City {
     //@JsonIgnore
     private Region region;
 
-    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
-    private Set<Artist> artists;
+    @ManyToMany(mappedBy = "cities", fetch = FetchType.EAGER)
+    private Set<Artist> artists = new HashSet<>();
 
     public City() {}
 
