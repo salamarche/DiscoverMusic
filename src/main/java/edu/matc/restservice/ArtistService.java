@@ -23,8 +23,8 @@ public class ArtistService {
 
         for (Artist artist : artists) {
             output += artist.getId() + "\n"
-                    + artist.getArtistName() + "\n"
-                    + artist.getCity() + "\n \n";
+                    + artist.getArtistName() + "\n";
+                    //+ artist.getCity() + "\n \n";
 
         }
         return Response.status(200).entity(output).build();
@@ -39,8 +39,8 @@ public class ArtistService {
         Artist artist = (Artist) artistDao.getById(id);
 
         output += artist.getId() + "\n"
-                + artist.getArtistName() + "\n"
-                + artist.getCity() + "\n \n";
+                + artist.getArtistName() + "\n";
+                //+ artist.getCity() + "\n \n";
 
 
         return Response.status(200).entity(output).build();
