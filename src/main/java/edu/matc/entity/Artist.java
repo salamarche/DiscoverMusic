@@ -164,19 +164,19 @@ public class Artist {
 
     public void removeCity (City city) {
 
+        /*
         for(City c : this.cities) {
             if(c.getId() == city.getId()) {
                 this.cities.remove(c);
                 break;
             }
         }
+         */
 
-        /*
         if (this.cities.contains(city)) {
             this.cities.remove(city);
 
         }
-         */
         city.getArtists().remove(this);
     }
 
