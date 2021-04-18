@@ -44,7 +44,16 @@
     </form>
 
     <script>
-        let url = "http://localhost:8080/DiscoverMusic_war/services/countries";
+        let countryUrl = "http://localhost:8080/DiscoverMusic_war/services/countries";
+        let regionUrl = "http://localhost:8080/DiscoverMusic_war/services/regions"
+
+        const countryList = document.querySelector("#countryList");
+        const regionList = document.querySelector("#regionList");
+        const cityList = document.querySelector("#cityList");
+
+        const countryInput = document.querySelector("#country");
+        const regionInput = document.querySelector("#region");
+        const cityInput = document.querySelector("#city");
 
         const getRequestJSON = (url, callBack) => {
             let xhr = new XMLHttpRequest();
@@ -59,10 +68,26 @@
             xhr.send(null);
         }
 
+        const findOptionId = (datalist, nameValue ) => {
+            let options = datalist.querySelectorAll("option");
+            let thisId;
+            for (i = 0; i < options.length; i++ ) {
+                let option = options[i]
+                let name = option.value;
+
+                if (name == nameValue) {
+                    thisId = option.getAttribute("id");
+                    break;
+                }
+            }
+
+            return thisId;
+        }
+
         window.onload = () => {
-            getRequestJSON(url, (response) => {
+            //Get country list and populate first option
+            getRequestJSON(countryUrl, (response) => {
                 let countries = response.Countries;
-                let countryList = document.querySelector("#countryList");
 
                 for (i = 0; i < countries.length; i++ ) {
                     let country = countries[i];
@@ -70,19 +95,57 @@
                     let countryId = country.id;
 
                     let option = document.createElement("option");
-                    option.setAttribute("id", countryId);
                     option.setAttribute("value", countryName);
+                    option.setAttribute("id", countryId);
 
                     countryList.appendChild(option);
                 }
             });
-            let countryInput = document.querySelector("#country");
+
             countryInput.addEventListener("change", () => {
                 //console.log(countryInput.value);
+                //clear city region options and city options
+                let cityOptions = cityList.querySelectorAll("option");
+                let regionOptions = regionList.querySelectorAll("option");
+                cityOptions.forEach(o => o.remove());
+                regionOptions.forEach(o => o.remove());
 
-                //TODO: populate region
-            })
-        }
+                //get value + associated id
+                let selectedValue = countryInput.value;
+                let countryId = findOptionId(countryList, selectedValue);
+                console.log(countryId);
+
+                //populate rgion dropdown
+                let regionUrlWithValue = regionUrl + "/" + countryId;
+                getRequestJSON(regionUrlWithValue, (response) => {
+                    let regions = response.Regions;
+                    let regionList = document.querySelector("#regionList");
+
+                    for (i = 0; i < regions.length; i++ ) {
+                        let region = regions[i];
+                        let regionName = region.name;
+                        let regionId = region.id;
+
+                        let option = document.createElement("option");
+                        //option.setAttribute("id", countryId);
+                        option.setAttribute("value", regionName);
+                        option.setAttribute("id", regionId);
+                        regionList.appendChild(option);
+                    }
+                });
+            });
+
+            regionInput.addEventListener("change", () => {
+                console.log(regionInput.value);
+                //clear city options
+
+                //get value + associated id
+
+                //populate city dropdown
+
+
+            });
+        } //end of window.onload
     </script>
 </body>
 
