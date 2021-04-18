@@ -1,9 +1,7 @@
 package edu.matc.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.time.*;
-import java.util.*;
+import java.time.LocalDateTime;
 
 @Entity(name = "ArtistEngagement")
 @Table(name = "artist_engagement")
@@ -19,8 +17,6 @@ public class ArtistEngagement {
     @ManyToOne
     @MapsId("artistId")
     private Artist artist;
-
-    @Column(name = "engagement_date")
     private LocalDateTime engagementDate;
 
     public ArtistEngagement() {
