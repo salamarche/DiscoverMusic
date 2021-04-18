@@ -40,6 +40,10 @@
         <datalist id="cityList">
         </datalist>
 
+        <input type="hidden" id="selectedCountryId">
+        <input type="hidden" id="selectedRegionId">
+        <input type="hidden" id="selectedCityId">
+
         <input type="submit" value="enter location">
     </form>
 
@@ -60,6 +64,10 @@
         const countryInput = document.querySelector("#country");
         const regionInput = document.querySelector("#region");
         const cityInput = document.querySelector("#city");
+
+        const countryIdInput = document.querySelector("#selectedCountryId");
+        const regionIdInput = document.querySelector("#selectedRegionId");
+        const cityIdInput = document.querySelector("#selectedCityId");
 
         const getRequestJSON = (url, callBack) => {
             let xhr = new XMLHttpRequest();
@@ -115,11 +123,18 @@
                 let regionOptions = regionList.querySelectorAll("option");
                 cityOptions.forEach(o => o.remove());
                 regionOptions.forEach(o => o.remove());
+                cityInput.textContent = "";
+                regionInput.textContent = "";
+                cityIdInput.setAttribute("value", "");
+                regionIdInput.setAttribute("value", "");
+
 
                 //get value + associated id
                 let selectedValue = countryInput.value;
                 let countryId = findOptionId(countryList, selectedValue);
-                console.log(countryId);
+
+                //set hidden input
+                countryIdInput.setAttribute("value", countryId);
 
                 //populate region dropdown
                 let regionUrlWithValue = regionUrl + "/" + countryId;
@@ -145,11 +160,17 @@
                 //clear city options
                 let cityOptions = cityList.querySelectorAll("option");
                 cityOptions.forEach(o => o.remove());
+                cityInput.textContent = "";
+                cityIdInput.setAttribute("value", "");
 
                 //get value + associated id
                 let selectedValue = regionInput.value;
                 let regionId = findOptionId(regionList, selectedValue);
                 console.log(regionId);
+
+                //set hidden input
+                regionIdInput.setAttribute("value", regionId);
+
 
                 //populate city dropdown
                 let cityUrlWithValue = cityUrl + "/" + regionId;
@@ -168,8 +189,18 @@
                         cityList.appendChild(option);
                     }
                 });
-
             });
+
+            cityInput.addEventListener("change", () => {
+                //get value + associated id
+                let selectedValue = cityInput.value;
+                let cityId = findOptionId(cityList, selectedValue);
+                console.log(cityId);
+
+                //set hidden input
+                cityIdInput.setAttribute("value", cityId);
+            });
+
         }
     </script>
 </body>
