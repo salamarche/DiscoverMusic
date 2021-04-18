@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS country;
-DROP TABLE IF EXISTS region;
-DROP TABLE IF EXISTS city;
-
+DROP TABLE IF EXISTS artist_location;
 DROP TABLE IF EXISTS artist_engagement;
 DROP TABLE IF EXISTS artist;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS country;
 
 /* LOCATIONS */
 create table country (
@@ -40,34 +40,43 @@ create table artist
 (
     id            int auto_increment
         primary key,
-    spotify_id varchar(100) null,
-    artist_name   varchar(100) null,
-    city_id       int null,
-    avatar_url    varchar(500) null,
-    description   varchar(500) null,
+    spotifyId varchar(100) null,
+    artistName   varchar(100) null,
+    avatarUrl    varchar(500) null,
+    description   varchar(500) null
 
-    constraint FK_location_id
-        foreign key (city_id) references city (id)
+);
 
+create table artist_location
+(
+    artistId int not null,
+    cityId int not null,
+    primary key (artistId, cityId),
+
+    constraint artistId_fk
+        foreign key (artistId) references artist (id),
+
+    constraint cityId_fk
+        foreign key (cityId) references city (id)
 );
 
 create table user
 (
     id        int auto_increment
         primary key,
-    user_name varchar(100) not null,
+    userName varchar(100) not null,
     email     varchar(100) not null,
-    user_role varchar(100) not null
+    userRole varchar(100) not null
 );
 
 create table artist_engagement
 (
-    artist_id       int      null,
-    user_id         int      null,
-    engagement_date datetime null,
+    artistId       int      null,
+    userId         int      null,
+    engagementDate datetime null,
     constraint FK_artist_id
-        foreign key (artist_id) references artist (id),
+        foreign key (artistId) references artist (id),
     constraint FK_user_id
-        foreign key (user_id) references user (id)
+        foreign key (userId) references user (id)
 );
 
