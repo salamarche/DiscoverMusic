@@ -38,7 +38,7 @@
 
     <script>
 
-        let countryUrl = "http://localhost:8080/DiscoverMusic_war/services/countries";
+        let countryUrl = "./services/countries";
 
         const countryList = document.querySelector("#countryList");
         const regionList = document.querySelector("#regionList");
