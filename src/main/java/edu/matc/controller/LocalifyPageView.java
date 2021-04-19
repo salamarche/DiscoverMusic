@@ -26,7 +26,7 @@ public class GetLocationPageView extends HttpServlet {
         GenericDao countryDao = new GenericDao(Country.class);
         req.setAttribute("countries", countryDao.getAll());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/getLocation.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/locationFormElements.jsp");
         dispatcher.forward(req, resp);
     }
 

@@ -11,16 +11,12 @@
 <%@include file="head.jsp"%>
 <body>
 <%@include file="header.jsp"%>
-    <!--
-    <div id="searchContainer">
-        <form class="form" id="searchArtistsForm" action="discoverAction" method="GET" >
-            <input class="form-control" type="text" id="city" name="city" placeholder="city">
-            <input class="form-control" type="text" id="country" name="country" placeholder="country">
-            <button class="btn btn-info" id="locateUser">Get Current Location</button>
-            <input class="btn btn-primary" type="submit" value="Search for Artists">
-        </form>
-    </div>
-    -->
+
+    <form action="discoverAction" method="post" id="locationForm">
+        <%@include file="locationFormElements.jsp"%>
+        <input class="btn btn-primary mb-2" type="submit" value="enter location">
+    </form>
+
     <div id="resultsContainer">
         <%//TODO make this pretty %>
         <ul>
@@ -32,12 +28,15 @@
     </div>
 
     <script>
+
+        /*
         locateUser = document.querySelector("#locateUser");
         locateUser.addEventListener('click', () => {
            navigator.geolocation.getCurrentPosition(function(position) {
                console.log(position);
            });
         });
+         */
     </script>
 
 
