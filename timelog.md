@@ -31,3 +31,16 @@
 |3/23/2021|Implement aws Cognito authentication flow|3|Need to decode token|
 |3/26/2021|Decoded JWT with Jose4J|2||
 |3/28/2021|Finished login action servlet logic|3|Need to put some more logic into admin only pages|
+|3/30/2021|Cleaning up confirmation login pages|.5||
+|4/2/2021|Reorganizing tests, removing unnecessary Dao|1||
+|4/9/2021|Creating location DB, new entities, and tests|7||
+|4/11/2021|Location entity testing continued|2||
+|4/15/2021|Creating Location services |3||
+|4/16/2021|Creating responsive location form fields|4||
+|4/18/2021|Reconfiguring response location form fields and services to improve performance|2||
+|4/18/2021|Updated artist - location mapping, included update artist functionality|3||
+|4/19/2021|Functionality added: find artist by location + update artist location|7||
+
+
+
+
