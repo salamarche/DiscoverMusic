@@ -87,14 +87,26 @@
             return thisId;
         }
 
-        window.onload = () => {
-            //Get country list and populate first option
-            getRequestJSON(countryUrl, (response) => {
-                let countries = response.Countries;
+        const getData = () => {
+            return new Promise((resolve, reject) => {
+                getRequestJSON(countryUrl, (response) => {
+                    if (response == "") {
+                        let error="There was an http issue";
+                        reject(error);
+                    } else {
+                    let data = response;
+                    resolve(data)
+                    }
+                });
+            });
+        }
 
-                for (i = 0; i < countries.length; i++ ) {
-                    let country = countries[i];
-                    let countryName = country.name;
+        window.onload = () => {
+            getData().then((data) => {
+                //fill countries drop down
+                for (i = 0; i < data.length; i++ ) {
+                    let country = data[i];
+                    let countryName = country.countryName;
                     let countryId = country.id;
 
                     let option = document.createElement("option");
@@ -102,8 +114,25 @@
                     option.setAttribute("id", countryId);
 
                     countryList.appendChild(option);
+
                 }
-            });
+                //await change countries
+
+                    //fill region drop down
+
+                    //await change regions
+
+                        //fill city drop down
+
+                        //Set hidden inputs
+            }).catch(err => console.error(err));
+
+
+            /*
+
+
+
+            console.log(data);
 
             countryInput.addEventListener("change", () => {
                 //console.log(countryInput.value);
@@ -189,6 +218,8 @@
                 //set hidden input
                 cityIdInput.setAttribute("value", cityId);
             });
+
+          */
 
         }
     </script>
