@@ -1,5 +1,5 @@
 package edu.matc.entity;
-import edu.matc.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.*;
@@ -16,53 +16,44 @@ public class Artist {
     @GeneratedValue(strategy=GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-    @Column(name = "soundcloud_id")
-    private String soundcloudId;
-
-    @Column(name = "artist_name")
+    @Column(name="spotify_id")
+    private String spotifyId;
+    @Column(name="artist_name")
     private String artistName;
-
-    private String location;
-
-    @Column(name = "avatar_url")
+    @Column(name="avatar_url")
     private String avatarUrl;
-
-    @Column(name = "description")
+    @Column(name="description")
     private String description;
 
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "artist_location",
+            joinColumns = { @JoinColumn(name = "artist_id") },
+            inverseJoinColumns = { @JoinColumn(name = "city_id") }
+    )
+    @JsonIgnore
+    private Set<City> cities = new HashSet<>();
+
+
     /**
      *
      */
-    //TODO refactor from soundcloud to spotify naming convention
     public Artist() {}
 
     /**
      * @param soundcloudId
      * @param artistName
-     * @param location
+     *
      */
-    public Artist(String soundcloudId, String artistName, String location) {
-        this.soundcloudId = soundcloudId;
+    public Artist(String soundcloudId, String artistName) {
+        this.spotifyId = soundcloudId;
         this.artistName = artistName;
-        this.location = location;
+
     }
 
-    /**
-     * @return
-     */
-    public Set<ArtistEngagement> getArtistUserEngagement() {
-        return artistUserEngagement;
-    }
-
-    /**
-     * @param artistUserEngagement
-     */
-    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
-        this.artistUserEngagement = artistUserEngagement;
-    }
 
     /**
      * @return
@@ -110,15 +101,15 @@ public class Artist {
     /**
      * @return
      */
-    public String getSoundcloudId() {
-        return soundcloudId;
+    public String getSpotifyId() {
+        return spotifyId;
     }
 
     /**
      * @param soundcloudId
      */
-    public void setSoundcloudId(String soundcloudId) {
-        this.soundcloudId = soundcloudId;
+    public void setSpotifyId(String soundcloudId) {
+        this.spotifyId = soundcloudId;
     }
 
     /**
@@ -138,17 +129,76 @@ public class Artist {
     /**
      * @return
      */
-    public String getLocation() {
-        return location;
+    public Set<ArtistEngagement> getArtistUserEngagement() {
+        return artistUserEngagement;
     }
 
     /**
-     * @param location
+     * @param artistUserEngagement
      */
-    public void setLocation(String location) {
-        this.location = location;
+    public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
+        this.artistUserEngagement = artistUserEngagement;
     }
 
+    /**
+     * @return
+     */
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    /**
+     * @param cities
+     */
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
+    }
+
+    /**
+     * Adds a location to the Artist's set of locations
+     * @param city
+     */
+    public void addCity (City city) {
+        this.cities.add(city);
+        city.getArtists().add(this);
+
+    }
+
+    /**
+     * @param city
+     */
+    public void removeCity (City city) {
+
+        for(City c : this.cities) {
+            if(c.getId() == city.getId()) {
+                this.cities.remove(c);
+                break;
+            }
+        }
+        city.getArtists().remove(this);
+    }
+
+    /**
+     * @return
+     */
+    public Map<Integer, String> readableLocations () {
+        Map<Integer, String> artistLocations = new HashMap<>();
+        Set<City> artistCities = this.getCities();
+
+        for (City city : artistCities) {
+            String cityName = city.getCityName();
+            Region region = city.getRegion();
+            String regionName = region.getRegionName();
+            Country country = region.getCountry();
+            String countryName = country.getIso3();
+
+            String locationString = cityName + ", " + regionName + ", " + countryName;
+            Integer cityId = city.getId();
+            artistLocations.put(cityId, locationString);
+        }
+
+        return artistLocations;
+    }
 
 
 }

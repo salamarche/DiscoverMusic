@@ -168,7 +168,7 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
             user.setEmail(email);
             user.setUserName(username);
             user.setUserRole("general");
-            user.setPassword("WillRemoveThisSoon"); //TODO Refactor db, and remove this
+
             dao.saveOrUpdate(user);
 
         }

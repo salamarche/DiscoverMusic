@@ -23,6 +23,8 @@
     <jersey-version>2.29.1</jersey-version>
     <jackson-version>2.10.0</jackson-version>
     <httpcomponents-version>4.5.5</httpcomponents-version>
+
+
   </properties>
 
   <dependencies>
@@ -109,6 +111,7 @@
       <artifactId>jersey-hk2</artifactId>
       <version>${jersey-version}</version>
     </dependency>
+
     <!--RESTful Web Servic Jackson -->
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
     <dependency>
@@ -171,6 +174,20 @@
       <version>0.7.6</version>
     </dependency>
 
+    <!--Rest service -->
+
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+
   </dependencies>
 
 
@@ -220,7 +237,6 @@
         <filtering>true</filtering>
       </resource>
     </resources>
-
 
 
 

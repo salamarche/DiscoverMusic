@@ -1,9 +1,7 @@
 package edu.matc.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.time.*;
-import java.util.*;
+import java.time.LocalDateTime;
 
 @Entity(name = "ArtistEngagement")
 @Table(name = "artist_engagement")
@@ -20,7 +18,7 @@ public class ArtistEngagement {
     @MapsId("artistId")
     private Artist artist;
 
-    @Column(name = "engagement_date")
+    @Column(name = "engagementDate")
     private LocalDateTime engagementDate;
 
     public ArtistEngagement() {
@@ -38,6 +36,7 @@ public class ArtistEngagement {
     public void setId(ArtistEngagementId id) {
         this.id = id;
     }
+
     public User getUser() {
         return user;
     }

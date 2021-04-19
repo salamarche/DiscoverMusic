@@ -1,14 +1,15 @@
 package edu.matc.persistence;
 
-import edu.matc.entity.*;
+import edu.matc.entity.Artist;
+import edu.matc.entity.ArtistEngagement;
+import edu.matc.entity.City;
+import edu.matc.entity.User;
 import edu.matc.test.util.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ class ArtistTest {
     GenericDao userDao;
     GenericDao artistDao;
     GenericDao artistEngagementDao;
+    GenericDao cityDao;
 
 
     @BeforeEach
@@ -26,6 +28,7 @@ class ArtistTest {
         userDao = new GenericDao(User.class);
         artistDao = new GenericDao(Artist.class);
         artistEngagementDao = new GenericDao(ArtistEngagement.class);
+        cityDao = new GenericDao<City>(City.class);
 
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
@@ -36,7 +39,7 @@ class ArtistTest {
     @Test
     void insertArtistWithSuccess() {
         List<Artist> allArtistsBeforeInsert = artistDao.getAll();
-        Artist newArtist = new Artist("abc123", "jukeboxxx", "someLocation");
+        Artist newArtist = new Artist("abc123", "jukeboxxx");
         artistDao.insert(newArtist);
         List<Artist> allArtistsAfterInsert = artistDao.getAll();
         assert(allArtistsAfterInsert.size() == (allArtistsBeforeInsert.size() + 1));
@@ -64,8 +67,8 @@ class ArtistTest {
     @Test
     void getByPropertyEqualSuccess() {
 
-        String propertyName = "soundcloudId";
-        String value = "soundcloudId100";
+        String propertyName = "spotifyId";
+        String value = "id1";
         List<Artist> list = artistDao.getByPropertyEqual(propertyName, value);
         assert(list.size() == 1);
     }
@@ -96,5 +99,42 @@ class ArtistTest {
         List<Artist> artists = artistDao.getAll();
         assertEquals(2, artists.size());
     }
+
+    @Test
+    void addArtistLocation() {
+        Artist artist = (Artist)artistDao.getById(2);
+        int artistCities = artist.getCities().size();
+        City city = (City)cityDao.getById(1);
+        artist.addCity(city);
+        artistDao.saveOrUpdate(artist);
+
+        Artist artistAfterUpdate = (Artist)artistDao.getById(2);
+        int artistCitiesAfterUpdate = artistAfterUpdate.getCities().size();
+        assert (artistCitiesAfterUpdate == artistCities + 1);
+
+    }
+
+    @Test
+    void deleteArtistLocation() {
+        Artist artist = (Artist)artistDao.getById(2);
+        Set<City> artistCities = artist.getCities();
+        int artistCitiesLength = artist.getCities().size();
+        City cityToRemove = null;
+        for (City c: artistCities) {
+            cityToRemove = c;
+        }
+
+        artist.removeCity(cityToRemove);
+        artistDao.saveOrUpdate(artist);
+
+        Artist artistAfterUpdate = (Artist)artistDao.getById(2);
+        int artistCitiesLengthAfterUpdate = artistAfterUpdate.getCities().size();
+
+        assert(artistCitiesLengthAfterUpdate == artistCitiesLength - 1);
+
+
+    }
+
+
 
 }

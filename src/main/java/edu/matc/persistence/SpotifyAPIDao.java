@@ -7,13 +7,12 @@ import com.wrapper.spotify.model_objects.specification.Artist;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 import com.wrapper.spotify.requests.data.artists.GetArtistRequest;
 import com.wrapper.spotify.requests.data.artists.GetSeveralArtistsRequest;
+import edu.matc.utilities.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Properties;
-
-import edu.matc.utilities.*;
 
 public class SpotifyAPIDao implements PropertiesLoader {
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -123,7 +122,6 @@ public class SpotifyAPIDao implements PropertiesLoader {
         try {
             artists = getSeveralArtistsRequest.execute();
 
-            logger.error("Length: " + artists.length);
         } catch (IOException | SpotifyWebApiException | org.apache.hc.core5.http.ParseException e) {
             logger.error("Error: " + e.getMessage());
         }

@@ -36,7 +36,7 @@ class UserTest {
     void insertUserWithSuccess() {
 
         List<User> allUsersBeforeInsert = userDao.getAll();
-        User newUser = new User("Chidi Anagonye", "chidi.anagonye@goodplace.hll", "123123", "user");
+        User newUser = new User("Chidi Anagonye", "chidi.anagonye@goodplace.hll", "user");
         userDao.insert(newUser);
         List<User> allUsersAfterInsert = userDao.getAll();
         assert(allUsersAfterInsert.size() == (allUsersBeforeInsert.size() + 1));
