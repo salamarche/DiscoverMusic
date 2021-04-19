@@ -1,5 +1,6 @@
 package edu.matc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class City {
 
     @ManyToOne
     @JoinColumn(name="region_id", nullable = false)
-    //@JsonIgnore
+    @JsonIgnore
     private Region region;
 
     @ManyToMany(mappedBy = "cities", fetch = FetchType.EAGER)

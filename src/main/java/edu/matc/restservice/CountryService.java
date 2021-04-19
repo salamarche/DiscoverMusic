@@ -6,8 +6,6 @@ import edu.matc.entity.Country;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jose4j.json.internal.json_simple.JSONArray;
-import org.jose4j.json.internal.json_simple.JSONObject;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,7 +24,10 @@ public class CountryService {
         List<Country> countries = dao.getAll();
         ObjectMapper mapper = new ObjectMapper();
         //This gets absolutely everything. Because of the JSONignore we can only get it in this direction.
-        //String countryData = mapper.writeValueAsString(countries);
+        String countryData = mapper.writeValueAsString(countries);
+
+        //This method we have less detail and more services
+        /*
         String countryData;
         JSONObject json = new JSONObject();
         JSONArray countryArray = new JSONArray();
@@ -38,7 +39,7 @@ public class CountryService {
             countryObject.put("iso3", c.getIso3());
 
             //Adding in regions
-            /*
+
             JSONArray regionArray = new JSONArray();
             Set<Region> regions = c.getRegions();
             for (Region r : regions) {
@@ -48,12 +49,12 @@ public class CountryService {
                 regionArray.add(regionObject);
             }
             countryObject.put("Regions", regionArray);
-            */
             countryArray.add(countryObject);
         }
 
         json.put("Countries", countryArray);
         countryData = json.toJSONString();
+        */
         return Response.status(200).entity(countryData).build();
 
     }

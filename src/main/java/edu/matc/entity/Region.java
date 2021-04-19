@@ -1,5 +1,6 @@
 package edu.matc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Region {
 
     @ManyToOne
     @JoinColumn(name="country_id", nullable = false)
-    //@JsonIgnore
+    @JsonIgnore
     private Country country;
 
 

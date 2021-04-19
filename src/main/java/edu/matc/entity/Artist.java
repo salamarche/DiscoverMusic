@@ -1,4 +1,5 @@
 package edu.matc.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.*;
@@ -33,6 +34,7 @@ public class Artist {
             joinColumns = { @JoinColumn(name = "artist_id") },
             inverseJoinColumns = { @JoinColumn(name = "city_id") }
     )
+    @JsonIgnore
     private Set<City> cities = new HashSet<>();
 
 
