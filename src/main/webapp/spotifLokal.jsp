@@ -27,11 +27,13 @@
             <form id="removeLocationForm" action="remove-location" method="post" >
                 <ul>
                     <c:forEach items="${artistLocations}" var="location">
-                        <li>${location.value}
+                        <li>
+                            <label for="${location.key}">${location.value}</label>
                             <input class="form-control" type="radio" id="${location.key}" name="location" value="${location.key}">
                         </li>
                     </c:forEach>
                 </ul>
+                <input type="hidden" name="artistId" value="${artist.id}">
                 <input type="submit" value="remove location" name="removeLocation">
             </form>
         </c:if>
