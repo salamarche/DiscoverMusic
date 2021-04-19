@@ -37,14 +37,8 @@
     </form>
 
     <script>
-        /*TODO: This doesn't have to be this hard! Get one HUGE json
-           with all data and use javascript to search the same object for each.
-           This should improve performance instead of making so many requests.
-        */
 
         let countryUrl = "http://localhost:8080/DiscoverMusic_war/services/countries";
-        let regionUrl = "http://localhost:8080/DiscoverMusic_war/services/regions"
-        let cityUrl = "http://localhost:8080/DiscoverMusic_war/services/cities";
 
         const countryList = document.querySelector("#countryList");
         const regionList = document.querySelector("#regionList");
@@ -94,7 +88,7 @@
                         let error="There was an http issue";
                         reject(error);
                     } else {
-                    let data = response;
+                        let data = response;
                     resolve(data)
                     }
                 });
@@ -127,25 +121,58 @@
             cityIdInput.setAttribute("value", "");
             regionIdInput.setAttribute("value", "");
 
-            //get countryId + populate regions datalist
+            //get countryId and set hidden input value
             let selectedValue = countryInput.value;
             let countryId = findOptionId(countryList, selectedValue);
             countryIdInput.value = countryId;
 
-            console.log(countryId);
+            let country = data.filter(c => c.id == countryId);
+            let regions = country[0].regions;
 
-            data.find(d => {
-                console.log(d.id);
-                return d.id == countryId
-            })
+            for (i = 0; i < regions.length; i++) {
+                let region = regions[i];
 
+                let regionName = region.regionName;
+                let regionId = region.id;
 
+                let option = document.createElement("option");
+                option.setAttribute("value", regionName);
+                option.setAttribute("id", regionId);
+                regionList.appendChild(option);
+            }
         }
 
         const populateCityData = (data) => {
             //clear existing values for city
+            let cityOptions = cityList.querySelectorAll("option");
+            cityOptions.forEach(o => o.remove());
+            cityInput.value = "";
+            cityIdInput.setAttribute("value", "");
 
-            //get regionId + populate city datalist
+            //get regionId and countryId, set regionId
+            let selectedValue = regionInput.value;
+            let regionId = findOptionId(regionList, selectedValue);
+            regionIdInput.value = regionId;
+            let countryId = countryIdInput.value;
+
+            //populate city datalist
+            let country = data.filter(c => c.id == countryId);
+            let regions = country[0].regions;
+            let region = regions.filter(r => r.id == regionId);
+            let cities = region[0].cities;
+
+            for (i = 0; i < cities.length; i++) {
+                let city = cities[i];
+
+                let cityName = city.cityName;
+                let cityId = city.id;
+
+                let option = document.createElement("option");
+                option.setAttribute("value", cityName);
+                option.setAttribute("id", cityId);
+                cityList.appendChild(option);
+            }
+
         }
 
         window.onload = () => {
@@ -164,101 +191,14 @@
                     //fill city drop down
                     populateCityData(data);
                 });
+
+                //await change cities
+                cityInput.addEventListener("change", () => {
+                    let selectedValue = cityInput.value;
+                    let cityId = findOptionId(cityList, selectedValue);
+                    cityIdInput.setAttribute("value", cityId);
+                });
             }).catch(err => console.error(err));
-
-
-            /*
-
-
-
-            console.log(data);
-
-            countryInput.addEventListener("change", () => {
-                //console.log(countryInput.value);
-                //clear city region options and city options
-                let cityOptions = cityList.querySelectorAll("option");
-                let regionOptions = regionList.querySelectorAll("option");
-                cityOptions.forEach(o => o.remove());
-                regionOptions.forEach(o => o.remove());
-                cityInput.textContent = "";
-                regionInput.textContent = "";
-                cityIdInput.setAttribute("value", "");
-                regionIdInput.setAttribute("value", "");
-
-
-                //get value + associated id
-                let selectedValue = countryInput.value;
-                let countryId = findOptionId(countryList, selectedValue);
-
-                //set hidden input
-                countryIdInput.setAttribute("value", countryId);
-
-                //populate region dropdown
-                let regionUrlWithValue = regionUrl + "/" + countryId;
-                getRequestJSON(regionUrlWithValue, (response) => {
-                    let regions = response.Regions;
-
-                    for (i = 0; i < regions.length; i++ ) {
-                        let region = regions[i];
-                        let regionName = region.name;
-                        let regionId = region.id;
-
-                        let option = document.createElement("option");
-                        //option.setAttribute("id", countryId);
-                        option.setAttribute("value", regionName);
-                        option.setAttribute("id", regionId);
-                        regionList.appendChild(option);
-                    }
-                });
-            });
-
-            regionInput.addEventListener("change", () => {
-                console.log(regionInput.value);
-                //clear city options
-                let cityOptions = cityList.querySelectorAll("option");
-                cityOptions.forEach(o => o.remove());
-                cityInput.textContent = "";
-                cityIdInput.setAttribute("value", "");
-
-                //get value + associated id
-                let selectedValue = regionInput.value;
-                let regionId = findOptionId(regionList, selectedValue);
-                console.log(regionId);
-
-                //set hidden input
-                regionIdInput.setAttribute("value", regionId);
-
-
-                //populate city dropdown
-                let cityUrlWithValue = cityUrl + "/" + regionId;
-                getRequestJSON(cityUrlWithValue, (response) => {
-                    let cities = response.Cities;
-
-                    for (i = 0; i < cities.length; i++ ) {
-                        let city = cities[i];
-                        let cityName = city.name;
-                        let cityId = city.id;
-
-                        let option = document.createElement("option");
-
-                        option.setAttribute("value", cityName);
-                        option.setAttribute("id", cityId);
-                        cityList.appendChild(option);
-                    }
-                });
-            });
-
-            cityInput.addEventListener("change", () => {
-                //get value + associated id
-                let selectedValue = cityInput.value;
-                let cityId = findOptionId(cityList, selectedValue);
-                console.log(cityId);
-
-                //set hidden input
-                cityIdInput.setAttribute("value", cityId);
-            });
-
-          */
 
         }
     </script>
