@@ -2,9 +2,6 @@ package edu.matc.controller;
 
 import com.wrapper.spotify.model_objects.specification.Image;
 import edu.matc.entity.Artist;
-import edu.matc.entity.City;
-import edu.matc.entity.Country;
-import edu.matc.entity.Region;
 import edu.matc.persistence.GenericDao;
 import edu.matc.persistence.SpotifyAPIDao;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +17,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @WebServlet(
         urlPatterns = {"/confirm-artist"}
@@ -43,20 +39,9 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
                 isFound = true;
 
                 Map<Integer, String> artistLocations = new HashMap<>();
-                Set<City> artistCities = artist.getCities();
-                for (City city : artistCities) {
-                    String cityName = city.getCityName();
-                    Region region = city.getRegion();
-                    String regionName = region.getRegionName();
-                    Country country = region.getCountry();
-                    String countryName = country.getIso3();
-
-                    String locationString = cityName + ", " + regionName + ", " + countryName;
-                    Integer cityId = city.getId();
-                    artistLocations.put(cityId, locationString);
-                }
-
+                artistLocations = artist.readableLocations();
                 req.setAttribute("artistLocations", artistLocations);
+
             } else {
                 isFound = false;
             }
