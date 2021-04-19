@@ -77,7 +77,7 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
                 String imageUrl = image.getUrl();
 
                 String[] genres = spotifyArtist.getGenres();
-                String description = "Listed Genres: <ul> ";
+                String description = "<ul>";
                 for (String genre : genres) {
                     description += "<li>" + genre + "</li>";
                 }
