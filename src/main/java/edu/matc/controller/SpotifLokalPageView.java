@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(
-        urlPatterns = {"/spotifloKation"}
+        urlPatterns = {"/spotifLokal"}
 )
 
-public class LocalifyPageView extends HttpServlet {
+public class SpotifLokalPageView extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/localify.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/spotifLokal.jsp");
         dispatcher.forward(req, resp);
     }
 
