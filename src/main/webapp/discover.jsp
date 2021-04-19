@@ -11,6 +11,7 @@
 <%@include file="head.jsp"%>
 <body>
 <%@include file="header.jsp"%>
+    <!--
     <div id="searchContainer">
         <form class="form" id="searchArtistsForm" action="discoverAction" method="GET" >
             <input class="form-control" type="text" id="city" name="city" placeholder="city">
@@ -19,8 +20,14 @@
             <input class="btn btn-primary" type="submit" value="Search for Artists">
         </form>
     </div>
-
+    -->
     <div id="resultsContainer">
+        <%//TODO make this pretty %>
+        <ul>
+        <c:forEach items="${artists}" var="artist">
+            <li>${artist.artistName}</li>
+        </c:forEach>
+        </ul>
 
     </div>
 

@@ -12,19 +12,8 @@
     <title>Get Location</title>
 </head>
 <body>
-    <!--
-    <form action="" method="get" id="locationForm">
-        <label for="country">Select a Country</label>
-        <input list="countryList" name="country" id="country">
-        <datalist id="countryList">
-           <%/* <c:forEach var="country" items="${countries}">
-                <option value="${country.id}">${country.countryName}</option>
-            </c:forEach>
-            */%>
-        </datalist>
-    </form>
-    -->
-    <form action="" method="" id="locationForm">
+
+    <form action="discoverAction" method="post" id="locationForm">
         <label for="country">Select a Country</label>
         <input list="countryList" name="country" id="country">
         <datalist id="countryList">
@@ -40,9 +29,9 @@
         <datalist id="cityList">
         </datalist>
 
-        <input type="hidden" id="selectedCountryId">
-        <input type="hidden" id="selectedRegionId">
-        <input type="hidden" id="selectedCityId">
+        <input type="hidden" id="selectedCountryId" name="selectedCountryId" value="">
+        <input type="hidden" id="selectedRegionId" name="selectedRegionId" value="">
+        <input type="hidden" id="selectedCityId" name="selectedCityId" value="">
 
         <input type="submit" value="enter location">
     </form>
