@@ -24,17 +24,15 @@ public class DiscoverAction extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //String cityName = req.getParameter("city");
-        //logger.info("City: " + cityName);
-
         String cityId = req.getParameter("selectedCityId");
-        //logger.info("City Id: " + cityId);
-
         GenericDao cityDao = new GenericDao(City.class);
         City city = (City) cityDao.getById(Integer.parseInt(cityId));
+        String cityLocation = city.toString();
+
         Set<Artist> artists = city.getArtists();
         req.setAttribute("artists", artists);
-
+        req.setAttribute("cityLocation", cityLocation);
+        req.setAttribute("formSubmitted", true);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/discover.jsp");
         dispatcher.forward(req, resp);
