@@ -101,30 +101,69 @@
             });
         }
 
+        const populateCountryData = (data) => {
+            for (i = 0; i < data.length; i++ ) {
+                let country = data[i];
+                let countryName = country.countryName;
+                let countryId = country.id;
+
+                let option = document.createElement("option");
+                option.setAttribute("value", countryName);
+                option.setAttribute("id", countryId);
+
+                countryList.appendChild(option);
+
+            }
+        }
+
+        const populateRegionData = (data) => {
+            //clear existing values for region and city
+            let cityOptions = cityList.querySelectorAll("option");
+            let regionOptions = regionList.querySelectorAll("option");
+            cityOptions.forEach(o => o.remove());
+            regionOptions.forEach(o => o.remove());
+            cityInput.value = "";
+            regionInput.value = "";
+            cityIdInput.setAttribute("value", "");
+            regionIdInput.setAttribute("value", "");
+
+            //get countryId + populate regions datalist
+            let selectedValue = countryInput.value;
+            let countryId = findOptionId(countryList, selectedValue);
+            countryIdInput.value = countryId;
+
+            console.log(countryId);
+
+            data.find(d => {
+                console.log(d.id);
+                return d.id == countryId
+            })
+
+
+        }
+
+        const populateCityData = (data) => {
+            //clear existing values for city
+
+            //get regionId + populate city datalist
+        }
+
         window.onload = () => {
             getData().then((data) => {
                 //fill countries drop down
-                for (i = 0; i < data.length; i++ ) {
-                    let country = data[i];
-                    let countryName = country.countryName;
-                    let countryId = country.id;
+                populateCountryData(data);
 
-                    let option = document.createElement("option");
-                    option.setAttribute("value", countryName);
-                    option.setAttribute("id", countryId);
-
-                    countryList.appendChild(option);
-
-                }
                 //await change countries
-
+                countryInput.addEventListener("change", () => {
                     //fill region drop down
+                    populateRegionData(data);
+                });
 
-                    //await change regions
-
-                        //fill city drop down
-
-                        //Set hidden inputs
+                //await change regions
+                regionInput.addEventListener("change", () => {
+                    //fill city drop down
+                    populateCityData(data);
+                });
             }).catch(err => console.error(err));
 
 
