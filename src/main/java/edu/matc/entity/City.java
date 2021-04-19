@@ -76,4 +76,18 @@ public class City {
     public void setArtists(Set<Artist> artists) {
         this.artists = artists;
     }
+
+    @Override
+    public String toString() {
+
+        String cityName = this.getCityName();
+        Region region = this.getRegion();
+        String regionName = region.getRegionName();
+        Country country = region.getCountry();
+        String countryName = country.getIso3();
+
+        String cityLocation = cityName + ", " + regionName + ", " + countryName;
+
+        return cityLocation ;
+    }
 }

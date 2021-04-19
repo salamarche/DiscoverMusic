@@ -16,16 +16,31 @@
         <%@include file="locationFormElements.jsp"%>
         <input class="btn btn-primary mb-2" type="submit" value="enter location">
     </form>
+    <c:if test="${formSubmitted == 'true'}">
+        <c:if test="${fn:length(artists) > 0}">
+        <div id="resultsContainer">
+            <h3>Showing artists in ${cityLocation}</h3>
+            <div>
+            <c:forEach items="${artists}" var="artist">
+                <h4>${artist.artistName}</h4>
+                <p>${artist.spotifyId}</p>
+                <p>${artist.description}</p>
+                <img src="${artist.avatarUrl}" id="artistImage">
 
-    <div id="resultsContainer">
-        <%//TODO make this pretty %>
-        <ul>
-        <c:forEach items="${artists}" var="artist">
-            <li>${artist.artistName}</li>
-        </c:forEach>
-        </ul>
+            </c:forEach>
+            </div><br>
 
-    </div>
+        </c:if>
+
+        <c:if test="${fn:length(artists) == 0}">
+            <h3>No artists found in this region</h3>
+            <a href="spotifLokal"><h4>Contribute to our Collection</h4></a>
+        </c:if>
+
+
+        </div>
+    </c:if>
+
 
     <script>
 
