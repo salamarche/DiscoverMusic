@@ -24,13 +24,11 @@ public class DiscoverAction extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        logger.info("***********************DiscoverAction");
-
-        String cityName = req.getParameter("city");
-        logger.info("City: " + cityName);
+        //String cityName = req.getParameter("city");
+        //logger.info("City: " + cityName);
 
         String cityId = req.getParameter("selectedCityId");
-        logger.info("City Id: " + cityId);
+        //logger.info("City Id: " + cityId);
 
         GenericDao cityDao = new GenericDao(City.class);
         City city = (City) cityDao.getById(Integer.parseInt(cityId));
