@@ -25,6 +25,7 @@ public class Artist {
     @Column(name="description")
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
 
