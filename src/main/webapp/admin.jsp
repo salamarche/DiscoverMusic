@@ -53,7 +53,6 @@
           <th>ID</th>
           <th>Soundcloud ID</th>
           <th>Artist Name</th>
-          <th>Location</th>
           <th>Avatar</th>
           <th>Description</th>
           <th>Select User</th>
@@ -64,9 +63,8 @@
         <c:forEach var="artist" items="${artists}">
           <tr>
             <td>${artist.id}</td>
-            <td>${artist.soundcloudId}</td>
+            <td>${artist.spotifyId}</td>
             <td>${artist.artistName}</td>
-            <td>${artist.location}</td>
             <td>${artist.avatarUrl}</td>
             <td>${artist.description}</td>
             <td><input type="radio" value="${artist.id}" name="selectArtist" /></td>

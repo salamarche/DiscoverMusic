@@ -35,10 +35,17 @@ public class AdminPageView extends HttpServlet {
 
         HttpSession session = req.getSession();
         String userRole = (String)session.getAttribute("userRole");
-        logger.info(userRole);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin.jsp");
-        dispatcher.forward(req, resp);
-    }
+        String url;
+        if (userRole.equals("admin")) {
+            url = "/admin.jsp";
+
+        } else {
+            url = "/index.jsp";
+            req.setAttribute("userMessage", "Access Denied");
+        }
+            RequestDispatcher dispatcher = req.getRequestDispatcher(url);
+            dispatcher.forward(req, resp);
+        }
 
 }
