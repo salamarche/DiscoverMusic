@@ -21,8 +21,10 @@ import java.util.Set;
 public class AdminEditArtist extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         GenericDao artistDao = new GenericDao(Artist.class);
         int artistId = Integer.parseInt(req.getParameter("selectedArtist"));
         Artist artist = (Artist)artistDao.getById(artistId);
@@ -39,7 +41,7 @@ public class AdminEditArtist extends HttpServlet {
         }
 
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("admin");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("admin.jsp");
         dispatcher.forward(req, resp);
 
     }
