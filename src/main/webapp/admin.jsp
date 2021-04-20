@@ -35,7 +35,7 @@
             <td>${artist.artistName}</td>
             <td>${artist.avatarUrl}</td>
             <td>${artist.description}</td>
-            <td><input type="radio" value="${artist.id}" name="selectArtist" /></td>
+            <td><input type="radio" value="${artist.id}" name="selectedArtist" /></td>
           </tr>
         </c:forEach>
         </tbody>

@@ -22,14 +22,15 @@ public class AdminEditArtist extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GenericDao artistDao = new GenericDao(Artist.class);
+        int artistId = Integer.parseInt(req.getParameter("selectedArtist"));
+        Artist artist = (Artist)artistDao.getById(artistId);
 
         if (req.getParameter("submit").equals("delete")) {
-
-
+            artistDao.delete(artist);
         }
 
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("admin");
         dispatcher.forward(req, resp);
 
     }
