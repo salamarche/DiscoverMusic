@@ -22,9 +22,9 @@
             </datalist>
         </div>
 
-        <input type="hidden" id="selectedCountryId" name="selectedCountryId" value="">
-        <input type="hidden" id="selectedRegionId" name="selectedRegionId" value="">
-        <input type="hidden" id="selectedCityId" name="selectedCityId" value="">
+        <input class="hidden" id="selectedCountryId" name="selectedCountryId" value="">
+        <input class="hidden" id="selectedRegionId" name="selectedRegionId" value="">
+        <input class="hidden" id="selectedCityId" name="selectedCityId" value="">
 
         <!--<input class="btn btn-primary mb-2" type="submit" value="enter location">-->
     <!--</form>-->
