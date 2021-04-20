@@ -1,5 +1,7 @@
 package edu.matc.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -7,15 +9,19 @@ import java.time.LocalDateTime;
 @Table(name = "artist_engagement")
 
 public class ArtistEngagement {
-    @EmbeddedId
-    private ArtistEngagementId id = new ArtistEngagementId();
+    //@EmbeddedId
+    //private ArtistEngagementId id = new ArtistEngagementId();
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int id;
 
     @ManyToOne
-    @MapsId("userId")
+    //@MapsId("userId")
     private User user;
 
     @ManyToOne
-    @MapsId("artistId")
+    //@MapsId("artistId")
     private Artist artist;
 
     @Column(name = "engagementDate")
@@ -29,11 +35,11 @@ public class ArtistEngagement {
         this.user = user;
         this.engagementDate = engagementDate;
     }
-    public ArtistEngagementId getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(ArtistEngagementId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,7 +66,5 @@ public class ArtistEngagement {
     public void setEngagementDate(LocalDateTime engagementDate) {
         this.engagementDate = engagementDate;
     }
-
-
 
 }
