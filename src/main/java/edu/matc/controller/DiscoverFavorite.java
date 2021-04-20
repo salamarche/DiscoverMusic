@@ -5,7 +5,6 @@ import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,27 +33,23 @@ public class DiscoverFavorite extends HttpServlet {
             GenericDao userDao = new GenericDao(User.class);
             User user = (User) userDao.getById(userId);
             int artistId = Integer.parseInt(req.getParameter("artistId"));
+            String cityId = req.getParameter("cityId");
 
-            //TODO - build out the url like this:
-            // http://localhost:8080/DiscoverMusic_war/discoverAction?country=United+States&region=Wisconsin&city=Stevens+Point&selectedCountryId=10&selectedRegionId=255&selectedCityId=1840002320
-            // Make a utility class in city for discoverAction parameters
-            // Is there a way to NOT submit the text inputs?
-
-            url = "discoverAction";
+            //TODO - change this for deployment
+            url = "http://localhost:8080/DiscoverMusic_war/discoverAction?selectedCityId=" + cityId;
 
             logger.info("******************Discover Favorite");
             logger.info(userId);
             logger.info(artistId);
             logger.info(url);
-            RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-            dispatcher.forward(req, resp);
+
 
 
         } else {
             url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://localhost:8080/DiscoverMusic_war/confirmation";
-            resp.sendRedirect(url);
 
         }
+            resp.sendRedirect(url);
 
 
     }

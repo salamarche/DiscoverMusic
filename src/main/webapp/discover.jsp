@@ -48,6 +48,16 @@
 
 
     <script>
+        //This removes fields from location form that are not needed by the servelt
+        //However, there fields are needed for user and for the functionality of the form
+        let form = document.querySelector("#locationForm");
+        form.addEventListener("submit", () => {
+            form.country.remove();
+            form.region.remove();
+            form.city.remove();
+            form.selectedCountryId.remove();
+            form.selectedRegionId.remove();
+        });
 
         /*
         locateUser = document.querySelector("#locateUser");
