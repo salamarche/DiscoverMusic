@@ -41,7 +41,7 @@ public class AdminPageView extends HttpServlet {
             url = "/admin.jsp";
 
         } else {
-            url = "/index.jsp";
+            url = "/error.jsp";
             req.setAttribute("userMessage", "Access Denied");
         }
             RequestDispatcher dispatcher = req.getRequestDispatcher(url);

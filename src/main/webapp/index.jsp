@@ -12,9 +12,6 @@
 
     <p>Just testing login... <%= session.getAttribute("username")%> </p>
 
-    <c:if test="${userMessage != null}">
-        <p><%=request.getAttribute("userMessage") %></p>
-    </c:if>
 
 </body>
 </html>
