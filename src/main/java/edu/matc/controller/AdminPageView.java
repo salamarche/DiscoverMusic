@@ -2,7 +2,6 @@ package edu.matc.controller;
 
 
 import edu.matc.entity.Artist;
-import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,9 +25,6 @@ public class AdminPageView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        GenericDao userDao = new GenericDao(User.class);
-        req.setAttribute("users", userDao.getAll());
 
         GenericDao artistDao = new GenericDao(Artist.class);
         req.setAttribute("artists", artistDao.getAll());

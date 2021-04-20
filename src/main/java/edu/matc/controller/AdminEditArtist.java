@@ -1,6 +1,6 @@
 package edu.matc.controller;
 
-import edu.matc.entity.User;
+import edu.matc.entity.Artist;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,26 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(
-        urlPatterns = {"/editUser"}
+        urlPatterns = {"/edit-artist"}
 )
-public class EditUser extends HttpServlet {
+public class AdminEditArtist extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GenericDao userDao = new GenericDao(User.class);
-        //delete a user
+        GenericDao artistDao = new GenericDao(Artist.class);
+
         if (req.getParameter("submit").equals("delete")) {
-            Integer selectedUserId = Integer.parseInt(req.getParameter("selectUser"));
-            User selectedUser = (User)userDao.getById(selectedUserId);
-            userDao.delete(selectedUser);
+
+
         }
 
-        //reload page
-        req.setAttribute("users", userDao.getAll());
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/users.jsp");
-        dispatcher.forward(req, resp);
 
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin");
+        dispatcher.forward(req, resp);
 
     }
 }

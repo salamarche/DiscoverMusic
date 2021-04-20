@@ -12,46 +12,14 @@
 
   <body>
   <%@include file="header.jsp"%>
-  <div id="viewUsers">
-    <h2>Users</h2>
-    <form action="editUser" method="post" id="editUserForm">
-      <table class="table">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>User Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Select User</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <c:forEach var="user" items="${users}">
-          <tr>
-            <td>${user.id}</td>
-            <td>${user.userName}</td>
-            <td>${user.email}</td>
-            <td>${user.userRole}</td>
-            <td><input type="radio" value="${user.id}" name="selectUser" /></td>
-          </tr>
-        </c:forEach>
-        </tbody>
-      </table>
-
-      <button type="submit" class="btn btn-danger" name="submit" value="delete">Delete User</button>
-      <% //TODO Add update user and update artist action + page %>
-    </form>
-  </div>
-
   <div id="viewArtists">
     <h2>Artists</h2>
-    <form action="editArtist" method="post" id="editArtistForm">
+    <form action="edit-artist" method="post" id="editArtistForm">
       <table class="table">
         <thead>
         <tr>
           <th>ID</th>
-          <th>Soundcloud ID</th>
+          <th>Spotify ID</th>
           <th>Artist Name</th>
           <th>Avatar</th>
           <th>Description</th>
