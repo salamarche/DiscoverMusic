@@ -51,7 +51,8 @@ public class DiscoverFavorite extends HttpServlet {
             url = "./discoverAction?selectedCityId=" + cityId;
 
         } else {
-            url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://localhost:8080/DiscoverMusic_war/confirmation";
+
+            url = "login";
         }
             resp.sendRedirect(url);
 
