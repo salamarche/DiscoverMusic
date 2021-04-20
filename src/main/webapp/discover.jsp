@@ -12,7 +12,7 @@
 <body>
 <%@include file="header.jsp"%>
 
-    <form action="discoverAction" method="post" id="locationForm">
+    <form action="discoverAction" method="get" id="locationForm">
         <%@include file="locationFormElements.jsp"%>
         <input class="btn btn-primary mb-2" type="submit" value="enter location">
     </form>
@@ -22,10 +22,15 @@
             <h3>Showing artists in ${cityLocation}</h3>
             <div>
             <c:forEach items="${artists}" var="artist">
-                <h4>${artist.artistName}</h4>
-                <p>${artist.spotifyId}</p>
-                <p>${artist.description}</p>
-                <img src="${artist.avatarUrl}" id="artistImage">
+                <form action="favorite" method="post">
+                    <h4>${artist.artistName}</h4><input type="image" src="images/icons/white-heart.png">
+                    <p>${artist.spotifyId}</p>
+                    <p>${artist.description}</p>
+                    <img src="${artist.avatarUrl}" id="artistImage">
+                    <input type="hidden" name="artistId" value="${artist.id}">
+                    <input type="hidden" name="from" value="${pageContext.request.requestURI}">
+                    <input type="hidden" name="cityId" value="${cityId}">
+                </form>
 
             </c:forEach>
             </div><br>
