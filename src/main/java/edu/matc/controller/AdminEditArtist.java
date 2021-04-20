@@ -1,6 +1,7 @@
 package edu.matc.controller;
 
 import edu.matc.entity.Artist;
+import edu.matc.entity.ArtistEngagement;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet(
         urlPatterns = {"/edit-artist"}
@@ -26,6 +28,13 @@ public class AdminEditArtist extends HttpServlet {
         Artist artist = (Artist)artistDao.getById(artistId);
 
         if (req.getParameter("submit").equals("delete")) {
+
+            GenericDao artistEngagementDao = new GenericDao(ArtistEngagement.class);
+            Set<ArtistEngagement> artistEngagementSet = artist.getArtistUserEngagement();
+            for (ArtistEngagement ae : artistEngagementSet) {
+                artistEngagementDao.delete(ae);
+            }
+
             artistDao.delete(artist);
         }
 
