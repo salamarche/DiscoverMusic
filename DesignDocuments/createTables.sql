@@ -1,5 +1,3 @@
-use test_music;
-
 DROP TABLE IF EXISTS artist_location;
 DROP TABLE IF EXISTS artist_engagement;
 DROP TABLE IF EXISTS artist;
@@ -73,12 +71,18 @@ create table user
 
 create table artist_engagement
 (
-    artist_id       int      null,
-    user_id         int      null,
+    id              int      auto_increment
+        primary key,
+    artist_id       int      not null,
+    user_id         int      not null,
     engagementDate datetime null,
+
+
     constraint engagement_artistId_fk
         foreign key (artist_id) references artist (id),
-    constraint enagement_userId_fk
-        foreign key (user_id) references user (id)
+    constraint engagement_userId_fk
+        foreign key (user_id) references user (id),
+    constraint unique_artist_user
+        unique (artist_id, user_id)
 );
 

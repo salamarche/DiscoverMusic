@@ -23,7 +23,7 @@ INSERT INTO artist VALUES (2, 'id2', 'Ipsum Lorem', 'photo-url','artist descript
 INSERT INTO artist_location VALUES (1, 1);
 INSERT INTO artist_location VALUES (1, 2);
 INSERT INTO artist_location VALUES (2, 2);
-INSERT INTO artist_engagement VALUES (1, 1, '2020-01-01 10:10:10');
-INSERT INTO artist_engagement VALUES (2, 1, '2020-01-01 10:10:10');
-INSERT INTO artist_engagement VALUES (1, 2, '2020-01-01 10:10:10');
-INSERT INTO artist_engagement VALUES (1, 3, '2020-01-01 10:10:10');
+INSERT INTO artist_engagement VALUES (1, 1, 1, '2020-01-01 10:10:10');
+INSERT INTO artist_engagement VALUES (2, 2, 1, '2020-01-01 10:10:10');
+INSERT INTO artist_engagement VALUES (3, 1, 2, '2020-01-01 10:10:10');
+INSERT INTO artist_engagement VALUES (4, 1, 3, '2020-01-01 10:10:10');
