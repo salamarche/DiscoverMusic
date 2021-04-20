@@ -1,5 +1,7 @@
 package edu.matc.controller;
 
+import edu.matc.entity.Artist;
+import edu.matc.entity.ArtistEngagement;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(
         urlPatterns = {"/favorite"}
@@ -31,23 +34,24 @@ public class DiscoverFavorite extends HttpServlet {
             //add user engagement
 
             GenericDao userDao = new GenericDao(User.class);
+            GenericDao artistDao = new GenericDao(Artist.class);
+            GenericDao artistEngagementDao = new GenericDao(ArtistEngagement.class);
+
             User user = (User) userDao.getById(userId);
             int artistId = Integer.parseInt(req.getParameter("artistId"));
+            Artist artist = (Artist) artistDao.getById(artistId);
+
             String cityId = req.getParameter("cityId");
 
-            //TODO - change this for deployment
-            url = "http://localhost:8080/DiscoverMusic_war/discoverAction?selectedCityId=" + cityId;
-
-            logger.info("******************Discover Favorite");
-            logger.info(userId);
-            logger.info(artistId);
-            logger.info(url);
+            LocalDateTime dateTime = LocalDateTime.now();
+            ArtistEngagement engagement = new ArtistEngagement(artist, user, dateTime);
+            artistEngagementDao.insert(engagement);
 
 
+            url = "./discoverAction?selectedCityId=" + cityId;
 
         } else {
             url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://localhost:8080/DiscoverMusic_war/confirmation";
-
         }
             resp.sendRedirect(url);
 
