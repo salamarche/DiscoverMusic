@@ -1,5 +1,7 @@
 package edu.matc.controller;
 
+import edu.matc.entity.ArtistEngagement;
+import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(
@@ -17,14 +18,19 @@ import java.io.IOException;
 
 public class UserRemoveArtistEngagement extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getParameter("artistId");
+        Integer id = Integer.parseInt(req.getParameter("engagementId"));
 
-        //todo: need to get the id - set it in the map somehow? idk.
+        logger.info("remove engagement id: " + id);
+
+        GenericDao aeDao = new GenericDao(ArtistEngagement.class);
+        ArtistEngagement engagement = (ArtistEngagement) aeDao.getById(id);
+        aeDao.delete(engagement);
+
+        resp.sendRedirect("user");
 
     }
 }

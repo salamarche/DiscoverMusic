@@ -4,11 +4,13 @@
 <html>
 <body>
     <h1>User history</h1>
-    <c:forEach var="artist" items="${artists}">
-        <p>${artist.value.artistName}</p>
-        <form method="get" action="remove-engagement"></form>
-        <input class="hidden" name="artistId" value="${artist.value.id}">
-        <button class="btn btn-danger mb-2" type="submit">Remove from collection</button>
+    <c:forEach var="engagement" items="${engagementInfo}">
+        <p>${engagement.key}</p>
+        <p>${engagement.value['artist'].artistName}</p>
+        <form action="remove-engagement" method="post">
+            <input type="hidden" name="engagementId" value="${engagement.value['engagementId']}">
+            <input class="btn btn-danger mb-2" type="submit" value="remove">
+        </form>
     </c:forEach>
 </body>
 </html>

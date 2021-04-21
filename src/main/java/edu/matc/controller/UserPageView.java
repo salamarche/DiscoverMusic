@@ -1,6 +1,5 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Artist;
 import edu.matc.entity.ArtistEngagement;
 import edu.matc.entity.User;
 import edu.matc.persistence.GenericDao;
@@ -16,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 @WebServlet(
         urlPatterns = {"/user"}
@@ -40,18 +36,17 @@ public class UserPageView extends HttpServlet {
             User user = (User) userDao.getById(userId);
             Set<ArtistEngagement> engagements = user.getArtistUserEngagement();
 
-
-            Map<LocalDateTime, Artist> artists = new TreeMap<>(Collections.reverseOrder());
-
+            //Putting these in a map with the date so users see the most recent engagements first
+            Map<LocalDateTime, Map<String, Object>> engagementInfo = new TreeMap<>(Collections.reverseOrder());
             for (ArtistEngagement e : engagements) {
-
-                Artist artist = e.getArtist();
+                Map<String, Object> engagementMap = new HashMap<>();
+                engagementMap.put("engagementId", e.getId());
+                engagementMap.put("artist", e.getArtist());
                 LocalDateTime dateTime = e.getEngagementDate();
-                artists.put(dateTime, artist);
-
+                engagementInfo.put(dateTime, engagementMap);
             }
 
-            req.setAttribute("artists", artists);
+            req.setAttribute("engagementInfo", engagementInfo);
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("user.jsp");
             dispatcher.forward(req, resp);
