@@ -41,7 +41,7 @@
 |4/18/2021|Updated artist - location mapping, included update artist functionality|3||
 |4/19/2021|Functionality added: find artist by location + update artist location|7||
 |4/19/2021|Removing tomcat auth, added security check for admin page|2||
-
+|4/20/2021|Like function and user page|4||
 
 
 
