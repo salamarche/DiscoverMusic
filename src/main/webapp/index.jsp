@@ -8,6 +8,7 @@
         <li><a href="admin">Admin Page</a></li>
         <li><a href="discover">Discover Artists</a></li>
         <li><a href="spotifLokal">Contribute</a></li>
+        <li><a href="user">User</a></li>
     </ul>
 
     <p>Just testing login... <%= session.getAttribute("username")%> </p>
