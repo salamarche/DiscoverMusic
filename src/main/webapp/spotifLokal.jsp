@@ -44,6 +44,15 @@
             <input class="btn btn-primary mb-2" type="submit" value="add location">
         </form>
     </c:if>
+
+    <c:if test="${isFound == 'false'}">
+        <div>
+            <h2>Artist could not be located</h2>
+        </div>
+
+    </c:if>
+
+
     </div>
 </body>
 </html>
