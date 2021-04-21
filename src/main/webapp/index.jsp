@@ -11,8 +11,5 @@
         <li><a href="user">User</a></li>
     </ul>
 
-    <p>Just testing login... <%= session.getAttribute("username")%> </p>
-
-
 </body>
 </html>
