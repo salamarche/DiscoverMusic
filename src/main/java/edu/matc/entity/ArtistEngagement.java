@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity(name = "ArtistEngagement")
 @Table(name = "artist_engagement")
 
-public class ArtistEngagement {
+public class ArtistEngagement implements Comparable<ArtistEngagement> {
     //@EmbeddedId
     //private ArtistEngagementId id = new ArtistEngagementId();
     @Id
@@ -65,6 +65,11 @@ public class ArtistEngagement {
 
     public void setEngagementDate(LocalDateTime engagementDate) {
         this.engagementDate = engagementDate;
+    }
+
+    @Override
+    public int compareTo(ArtistEngagement engagement) {
+        return getEngagementDate().compareTo(engagement.getEngagementDate());
     }
 
 }
