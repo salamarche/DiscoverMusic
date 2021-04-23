@@ -11,5 +11,16 @@
         <li><a href="user">User</a></li>
     </ul>
 
+
+    <div>
+        <c:if test="${fn:length(discoveredArtists) > 0}">
+            <h2>Recently Discovered Artists</h2>
+            <c:forEach items="${discoveredArtists}" var="artist">
+                <h3>${artist.artistName}</h3>
+            </c:forEach>
+        </c:if>
+
+    </div>
+
 </body>
 </html>
