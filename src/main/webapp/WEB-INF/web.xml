@@ -8,5 +8,17 @@
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
 
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>IndexPageView</servlet-name>
+    <servlet-class>edu.matc.controller.IndexPageView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexPageView</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
+
 </web-app>
 
