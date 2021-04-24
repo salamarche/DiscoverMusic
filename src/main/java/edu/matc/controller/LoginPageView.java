@@ -21,7 +21,12 @@ public class LoginPageView extends HttpServlet implements PropertiesLoader {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //TODO: change for deployment
-        String url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://localhost:8080/DiscoverMusic_war/confirmation";
+        //Local
+        //String url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://localhost:8080/DiscoverMusic_war/confirmation";
+        //Aws
+        String url = "https://discover-music.auth.us-east-2.amazoncognito.com/login?response_type=token&client_id=4lqlga33rukqfjnas0rbi1rnn4&redirect_uri=http://3.140.97.66:8080/DiscoverMusic_war/confirmation";
+
+
         resp.sendRedirect(url);
     }
 

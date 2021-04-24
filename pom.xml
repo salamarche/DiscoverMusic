@@ -112,6 +112,28 @@
       <version>${jersey-version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet</artifactId>
+      <version>${jersey-version}</version>
+    </dependency>
+
+    <!-- https://stackoverflow.com/questions/19452887/org-glassfish-jersey-internal-runtimedelegateimpl-not-found/20258438-->
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-common</artifactId>
+      <version>${jersey-version}</version>
+      <!--<scope>test</scope>-->
+    </dependency>
+
+    <!--https://howtodoinjava.com/resteasy/solved-java-lang-classnotfoundexception-org-glassfish-jersey-client-jerseyclientbuilder/ -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>3.0.2.Final</version>
+    </dependency>
+
+
     <!--RESTful Web Servic Jackson -->
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
     <dependency>
@@ -172,20 +194,6 @@
       <groupId>org.bitbucket.b_c</groupId>
       <artifactId>jose4j</artifactId>
       <version>0.7.6</version>
-    </dependency>
-
-    <!--Rest service -->
-
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet</artifactId>
-      <version>${jersey-version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-      <version>${jersey-version}</version>
     </dependency>
 
   </dependencies>
