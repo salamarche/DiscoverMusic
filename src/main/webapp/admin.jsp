@@ -7,11 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="taglib.jsp"%>
-<html>
-<%@include file="head.jsp"%>
 
-  <body>
-  <%@include file="header.jsp"%>
+  <%@include file="nav.jsp"%>
   <div id="viewArtists">
     <h2>Artists</h2>
     <form action="edit-artist" method="post" id="editArtistForm">
@@ -46,5 +43,3 @@
     </form>
   </div>
 
-  </body>
-</html>

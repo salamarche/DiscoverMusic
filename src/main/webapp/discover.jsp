@@ -7,10 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="taglib.jsp"%>
-<html>
-<%@include file="head.jsp"%>
-<body>
-<%@include file="header.jsp"%>
+
+<%@include file="nav.jsp"%>
 
     <form action="discoverAction" method="get" id="locationForm">
         <%@include file="locationFormElements.jsp"%>
@@ -69,6 +67,3 @@
          */
     </script>
 
-
-</body>
-</html>

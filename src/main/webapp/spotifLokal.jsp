@@ -1,10 +1,7 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="taglib.jsp"%>
 
-<html>
-<%@include file="head.jsp"%>
-<body>
-<%@include file="header.jsp"%>
+<%@include file="nav.jsp"%>
 
     <form class="form" id="confirmId" action="confirm-artist" method="get">
         <label for="spotifyId">
@@ -54,5 +51,3 @@
 
 
     </div>
-</body>
-</html>

@@ -1,8 +1,7 @@
 <%@include file="taglib.jsp"%>
-<%@include file="head.jsp"%>
-<%@include file="header.jsp"%>
-<html>
-<body>
+
+<%@include file="nav.jsp"%>
+
     <h1>User history</h1>
     <c:forEach var="engagement" items="${engagementInfo}">
         <p>${engagement.key}</p>
@@ -12,5 +11,4 @@
             <input class="btn btn-danger mb-2" type="submit" value="remove">
         </form>
     </c:forEach>
-</body>
-</html>
+

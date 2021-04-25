@@ -1,10 +1,8 @@
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@include file="taglib.jsp"%>
-<%@include file="head.jsp"%>
-<%@include file="header.jsp"%>
-<html>
-<body>
+<%@include file="nav.jsp"%>
+
 <h2>Logging you in ...</h2>
 
 
@@ -40,7 +38,4 @@
      */
 
 %>
-</body>
 
-
-</html>

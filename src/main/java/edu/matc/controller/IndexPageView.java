@@ -43,7 +43,7 @@ public class IndexPageView extends HttpServlet {
                 discoveredArtists.add(engagements.get(i).getArtist());
             }
         } else if (engagements.size() == 0) {
-            resp.sendRedirect("index.jsp");
+
         }
 
         req.setAttribute("discoveredArtists", discoveredArtists);
