@@ -1,19 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: simon
-  Date: 3/9/2021
-  Time: 1:01 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="taglib.jsp"%>
-
 <%@include file="nav.jsp"%>
 
-    <form action="discoverAction" method="get" id="locationForm">
-        <%@include file="locationFormElements.jsp"%>
-        <input class="btn btn-primary mb-2" type="submit" value="enter location">
-    </form>
+<section class="projects-section bg-dark text-white">
+    <div class="container col-lg-8">
+        <form action="discoverAction" method="get" id="locationForm">
+            <%@include file="locationFormElements.jsp"%>
+            <input class="btn btn-primary mb-2" type="submit" value="enter location">
+        </form>
+    </div>
+</section>
+
+<section class="projects-section bg-light">
     <c:if test="${formSubmitted == 'true'}">
         <c:if test="${fn:length(artists) > 0}">
         <div id="resultsContainer">
@@ -43,6 +40,7 @@
 
         </div>
     </c:if>
+</section>
 
 
     <script>
@@ -66,4 +64,4 @@
         });
          */
     </script>
-
+<%@include file="footer.jsp"%>

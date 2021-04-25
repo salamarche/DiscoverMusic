@@ -12,3 +12,4 @@
         </form>
     </c:forEach>
 
+<%@include file="footer.jsp"%>

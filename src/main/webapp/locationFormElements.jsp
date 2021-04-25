@@ -3,21 +3,21 @@
     <!--<form action="discoverAction" method="post" id="locationForm">-->
         <div class="form-group">
             <label for="country">Select a Country</label>
-            <input class="form-control" list="countryList" name="country" id="country">
+            <input class="form-control" list="countryList" name="country" id="country" required>
             <datalist id="countryList">
             </datalist>
         </div>
 
         <div class="form-group">
             <label for="region">Select a State/ Providence/ Region</label>
-            <input class="form-control" list="regionList" name="region" id="region">
+            <input class="form-control" list="regionList" name="region" id="region" required>
             <datalist id="regionList">
             </datalist>
 
         </div>
         <div class="form-group">
             <label for="city">Select a City</label>
-            <input class="form-control" list="cityList" name="city" id="city">
+            <input class="form-control" list="cityList" name="city" id="city" required>
             <datalist id="cityList">
             </datalist>
         </div>
