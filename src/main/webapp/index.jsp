@@ -15,25 +15,39 @@
 
 
 <section class="projects-section bg-light" id="recentArtists">
-    <div class="row" >
-        <div class="mx-auto">
-        <c:if test="${fn:length(discoveredArtists) > 0}">
-            <h2>Recently Discovered Artists</h2>
-            <c:forEach items="${discoveredArtists}" var="artist">
-                <h3>${artist.artistName}</h3>
-            </c:forEach>
-        </c:if>
+    <div class="container">
 
-        </div>
+
+    <c:if test="${fn:length(discoveredArtists) > 0}">
+    <div class="row">
+        <h2>Recently Discovered Artists</h2>
     </div>
 
     <div class="row" >
-        <div class="col-lg-8 mx-auto">
-            <a class="btn btn-primary js-scroll-trigger" href="discover">Discover Artists</a>
-            <a class="btn btn-primary js-scroll-trigger" href="spotifLokal">Contribute</a>
+        <c:forEach items="${discoveredArtists}" var="artist">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${artist.avatarUrl}" alt="Artist profile picture">
+                <div class="card-body">
+                    <h3 class="card-title">${artist.artistName}</h3>
+                    <p class="card-text"></p>
+                </div>
+            </div>
         </div>
+        </c:forEach>
     </div>
 
+    </c:if>
+
+
+
+        <div class="row m-2" >
+            <div class="col-lg-8 mx-auto text-center">
+                <a class="btn btn-primary" href="discover">Discover Artists</a>
+                <a class="btn btn-primary" href="spotifLokal">Contribute</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <%@include file="footer.jsp"%>

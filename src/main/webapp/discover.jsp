@@ -1,6 +1,43 @@
 <%@include file="taglib.jsp"%>
 <%@include file="nav.jsp"%>
 
+<c:if test="${formSubmitted == 'true'}">
+<section class="projects-section bg-dark">
+    <div id="resultsContainer" class="container-fluid">
+        <c:if test="${fn:length(artists) > 0}">
+            <div class="row justify-content-center text-light"> <h2>Showing artists in ${cityLocation}</h2></div>
+            <div class="row justify-content-center">
+                <c:forEach items="${artists}" var="artist">
+                    <div class="col-md-4">
+                        <div class="card m-auto" style="width: 20rem;">
+                            <img class="card-img-top" src="${artist.avatarUrl}" id="artistImage" alt="Artist profile picture">
+                            <div class="card-body">
+                                <h3 class="card-title">${artist.artistName}</h3>
+                                <p class="card-text">${artist.spotifyId}<p>
+                                <p>${artist.description}</p>
+                                <div>
+                                    <form action="favorite" method="post">
+                                        <input style="width: 3rem;" type="image" id="add" src="images/icons/add.png">
+                                        <label for="add" >add artist to your collection</label>
+                                        <input type="hidden" name="artistId" value="${artist.id}">
+                                         <input type="hidden" name="cityId" value="${cityId}">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
+
+        <c:if test="${fn:length(artists) == 0}">
+            <h3>No artists found in this region</h3>
+            <a href="spotifLokal"><h4>Contribute to our Collection</h4></a>
+        </c:if>
+    </div>
+</section>
+</c:if>
+
 <section class="projects-section bg-dark text-white">
     <div class="container col-lg-8">
         <form action="discoverAction" method="get" id="locationForm">
@@ -8,38 +45,6 @@
             <input class="btn btn-primary mb-2" type="submit" value="enter location">
         </form>
     </div>
-</section>
-
-<section class="projects-section bg-light">
-    <c:if test="${formSubmitted == 'true'}">
-        <c:if test="${fn:length(artists) > 0}">
-        <div id="resultsContainer">
-            <h3>Showing artists in ${cityLocation}</h3>
-            <div>
-            <c:forEach items="${artists}" var="artist">
-                <form action="favorite" method="post">
-                    <h4>${artist.artistName}</h4><input type="image" src="images/icons/white-heart.png">
-                    <p>${artist.spotifyId}</p>
-                    <p>${artist.description}</p>
-                    <img src="${artist.avatarUrl}" id="artistImage">
-                    <input type="hidden" name="artistId" value="${artist.id}">
-                    <input type="hidden" name="from" value="${pageContext.request.requestURI}">
-                    <input type="hidden" name="cityId" value="${cityId}">
-                </form>
-
-            </c:forEach>
-            </div><br>
-
-        </c:if>
-
-        <c:if test="${fn:length(artists) == 0}">
-            <h3>No artists found in this region</h3>
-            <a href="spotifLokal"><h4>Contribute to our Collection</h4></a>
-        </c:if>
-
-
-        </div>
-    </c:if>
 </section>
 
 
