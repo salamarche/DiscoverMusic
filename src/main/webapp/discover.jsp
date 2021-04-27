@@ -6,26 +6,27 @@
     <div id="resultsContainer" class="container-fluid">
         <c:if test="${fn:length(artists) > 0}">
             <div class="row justify-content-center text-light"> <h2>Showing artists in ${cityLocation}</h2></div>
-            <div class="row justify-content-center">
+            <div class="card-columns">
+
                 <c:forEach items="${artists}" var="artist">
-                    <div class="col-md-4">
-                        <div class="card m-auto" style="width: 20rem;">
-                            <img class="card-img-top" src="${artist.avatarUrl}" id="artistImage" alt="Artist profile picture">
-                            <div class="card-body">
-                                <h3 class="card-title">${artist.artistName}</h3>
-                                <p class="card-text">${artist.spotifyId}<p>
-                                <p>${artist.description}</p>
-                                <div>
-                                    <form action="favorite" method="post">
-                                        <input style="width: 3rem;" type="image" id="add" src="images/icons/add.png">
-                                        <label for="add" >add artist to your collection</label>
-                                        <input type="hidden" name="artistId" value="${artist.id}">
-                                         <input type="hidden" name="cityId" value="${cityId}">
-                                    </form>
-                                </div>
+
+                    <div class="card m-2" style="width: 20rem;">
+                        <img class="card-img-top" src="${artist.avatarUrl}" id="artistImage" alt="Artist profile picture">
+                        <div class="card-body">
+                            <h3 class="card-title">${artist.artistName}</h3>
+                            <p class="card-text">${artist.spotifyId}<p>
+                            <p>${artist.description}</p>
+                            <div>
+                                <form action="favorite" method="post">
+                                    <input style="width: 3rem;" type="image" id="add" src="images/icons/add.png">
+                                    <label for="add" >add artist to your collection</label>
+                                    <input type="hidden" name="artistId" value="${artist.id}">
+                                     <input type="hidden" name="cityId" value="${cityId}">
+                                </form>
                             </div>
                         </div>
                     </div>
+
                 </c:forEach>
             </div>
         </c:if>
