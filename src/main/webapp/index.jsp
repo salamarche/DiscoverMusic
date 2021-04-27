@@ -26,14 +26,15 @@
 
         <div class="card-columns" >
             <c:forEach items="${discoveredArtists}" var="artist">
-
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="${artist.avatarUrl}" alt="Artist profile picture">
-                        <div class="card-body">
-                            <h3 class="card-title">${artist.artistName}</h3>
-                            <p class="card-text"></p>
-                        </div>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="${artist.avatarUrl}" alt="Artist profile picture">
+                    <div class="card-body">
+                        <h3 class="card-title">${artist.artistName}</h3>
+                        <c:forEach var="city" items="${artist.cities}">
+                            <p>${city.toString()}</p>
+                        </c:forEach>
                     </div>
+                </div>
             </c:forEach>
         </div>
 

@@ -16,7 +16,6 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="discover">Discover Artists</a></li>
                     <li class="nav-item"><a class="nav-link" href="spotifLokal">Contribute</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
 
                     <c:if test="${username == null}">
                         <li class="nav-item"><a class="nav-link" href="login">Sign In</a></li>
