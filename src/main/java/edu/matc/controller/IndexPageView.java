@@ -34,12 +34,12 @@ public class IndexPageView extends HttpServlet {
 
         Set<Artist> discoveredArtists = new HashSet<>();
 
-        if (engagements.size() < 5 && engagements.size() > 0 ) {
+        if (engagements.size() < 6 && engagements.size() > 0 ) {
             for (int i = 0; i < engagements.size(); i++) {
                 discoveredArtists.add(engagements.get(i).getArtist());
             }
-        } else if (engagements.size() > 5) {
-            for (int i = 0; i < 5; i++) {
+        } else if (engagements.size() > 6 || engagements.size() == 6) {
+            for (int i = 0; i < 6; i++) {
                 discoveredArtists.add(engagements.get(i).getArtist());
             }
         } else if (engagements.size() == 0) {
