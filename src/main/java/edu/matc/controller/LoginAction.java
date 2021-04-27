@@ -16,7 +16,6 @@ import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.keys.resolvers.HttpsJwksVerificationKeyResolver;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,8 +57,7 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         session.setAttribute("userId", user.getId());
 
         //forward to index
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-        dispatcher.forward(req, resp);
+        resp.sendRedirect("./");
 
 
 
