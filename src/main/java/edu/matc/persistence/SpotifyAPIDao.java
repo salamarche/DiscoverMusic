@@ -21,7 +21,7 @@ public class SpotifyAPIDao implements PropertiesLoader {
 
     /**
      * Default constructor with some hard coded secrets :0
-     * //TODO load in this from a properties file
+     *
      */
     public SpotifyAPIDao() {
 

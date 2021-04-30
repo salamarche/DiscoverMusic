@@ -32,8 +32,10 @@
         </c:if>
 
         <c:if test="${fn:length(artists) == 0}">
-            <h3>No artists found in this region</h3>
-            <a href="spotifLokal"><h4>Contribute to our Collection</h4></a>
+            <div class="text-center text-light">
+                <h3>No artists found in this city</h3>
+                <a href="spotifLokal"><h4>Contribute to our Collection</h4></a>
+            </div>
         </c:if>
     </div>
 </section>

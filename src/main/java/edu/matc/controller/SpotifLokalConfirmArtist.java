@@ -29,13 +29,13 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
 
         String idEntered = req.getParameter("spotifyId");
         Artist artist;
-        boolean isFound;
+        boolean isFound = false;
 
 
         if (idEntered != null) {
             artist = retrieveArtist(idEntered);
 
-            if (artist != null ) {
+            if (artist.getSpotifyId() != null ) {
                 isFound = true;
 
                 Map<Integer, String> artistLocations = new HashMap<>();
@@ -43,6 +43,7 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
                 req.setAttribute("artistLocations", artistLocations);
 
             } else {
+                logger.info("SpotifLokalConfirmArtist: artist not found");
                 isFound = false;
             }
 

@@ -26,7 +26,6 @@ public class IndexPageView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        logger.info("Index Page view working");
 
         GenericDao engagementDao = new GenericDao(ArtistEngagement.class);
         List<ArtistEngagement> engagements = engagementDao.getAll();

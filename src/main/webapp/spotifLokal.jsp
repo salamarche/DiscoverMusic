@@ -11,9 +11,9 @@
         </div>
     </section>
 
-    <section class="my-4">
-        <div class="container-fluid">
-            <c:if test="${isFound == 'true'}">
+    <c:if test="${isFound == 'true'}">
+        <section class="py-4">
+            <div class="container-fluid">
                 <div class="row justify-content-center mb-4"><h2>Artist Found</h2></div>
                 <div class="row justify-content-center">
 
@@ -66,14 +66,15 @@
                         </form>
                     </div>
                 </div>
-            </c:if>
+            </div>
+        </section>
+    </c:if>
 
-            <c:if test="${isFound == 'false'}">
-                <div>
-                    <h2>Artist could not be located</h2>
-                </div>
-
-            </c:if>
-        </div>
-    </section>
+    <c:if test="${isFound == 'false'}">
+        <section class="bg-dark p-4">
+            <div class = "text-light text-center">
+                <h2>Artist could not be located</h2>
+            </div>
+        </section>
+    </c:if>
 <%@include file="footer.jsp"%>
