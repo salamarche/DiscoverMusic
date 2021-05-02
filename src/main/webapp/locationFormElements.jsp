@@ -45,6 +45,7 @@
         const regionIdInput = document.querySelector("#selectedRegionId");
         const cityIdInput = document.querySelector("#selectedCityId");
 
+
         const getRequestJSON = (url, callBack) => {
             let xhr = new XMLHttpRequest();
             xhr.open("get", url);
@@ -56,6 +57,13 @@
                 }
             }
             xhr.send(null);
+        }
+
+
+        const readFromFile = (callBack) => {
+            fetch("data/countries.json")
+                .then(response => response.json())
+                .then(data => callBack(data));
         }
 
         const findOptionId = (datalist, nameValue ) => {
@@ -76,13 +84,13 @@
 
         const getData = () => {
             return new Promise((resolve, reject) => {
-                getRequestJSON(countryUrl, (response) => {
+                readFromFile((response) => {
                     if (response == "") {
                         let error="There was an http issue";
                         reject(error);
                     } else {
                         let data = response;
-                    resolve(data)
+                        resolve(data)
                     }
                 });
             });
