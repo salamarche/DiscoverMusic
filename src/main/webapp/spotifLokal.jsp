@@ -13,7 +13,7 @@
 
     <c:if test="${isFound == 'true'}">
         <section class="py-4">
-            <div class="container-fluid">
+            <div class="container-fluid text-light">
                 <div class="row justify-content-center mb-4"><h2>Artist Found</h2></div>
                 <div class="row justify-content-center">
 
