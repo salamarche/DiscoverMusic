@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.*;
 
 @WebServlet(
+            name = "IndexPageView",
             urlPatterns = {""}
     )
 public class IndexPageView extends HttpServlet {
