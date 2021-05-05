@@ -29,9 +29,10 @@ public class StartUp extends HttpServlet {
         String data = (String) result.getEntity();
 
         //TODO will this work out on AWS?
+        //this is relative to tomcat bin folder
         String filePath = "../../DiscoverMusic/src/main/webapp/data/countries.json";
 
-        //TODO set a boolean in the in the servlet context, to gracefully bail if this doesn't work.
+        //TODO if this isn't really going to change this can just be a static resource for how it's currently used
 
         //delete existing
         File fileToDelete = new File(filePath);
