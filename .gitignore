@@ -57,3 +57,4 @@ awsCredentials.properties
 
 #
 countries.json
+hibernate.cfg.xml
