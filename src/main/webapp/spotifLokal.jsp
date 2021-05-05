@@ -13,8 +13,8 @@
 
     <c:if test="${isFound == 'true'}">
         <section class="py-4">
-            <div class="container-fluid text-light">
-                <div class="row justify-content-center mb-4"><h2>Artist Found</h2></div>
+            <div class="container-fluid">
+                <div class="row justify-content-center mb-4 text-light"><h2>Artist Found</h2></div>
                 <div class="row justify-content-center">
 
                     <div class="col-md-4">
@@ -56,8 +56,8 @@
 
                 </div>
 
-                <div class="row justify-content-center"><h2>Add New Location</h2></div>
-                <div class="row justify-content-center my-4">
+                <div class="row justify-content-center text-light"><h2>Add New Location</h2></div>
+                <div class="row justify-content-center my-4 text-light">
                     <div class="col-lg-8">
                         <form class="form" id="addLocationForm" action="add-location" method="post">
                             <%@include file="locationFormElements.jsp"%>
