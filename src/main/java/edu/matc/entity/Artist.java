@@ -25,6 +25,10 @@ public class Artist {
     @Column(name="description")
     private String description;
 
+
+    @Column(name="href")
+    private String href;
+
     @JsonIgnore
     @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private Set<ArtistEngagement> artistUserEngagement = new HashSet<>();
@@ -153,6 +157,20 @@ public class Artist {
      */
     public void setCities(Set<City> cities) {
         this.cities = cities;
+    }
+
+    /**
+     * @return
+     */
+    public String getHref() {
+        return href;
+    }
+
+    /**
+     * @param href
+     */
+    public void setHref(String href) {
+        this.href = href;
     }
 
     /**

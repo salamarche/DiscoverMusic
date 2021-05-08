@@ -84,6 +84,9 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
                 }
                 description += "</ul>";
 
+                String href = spotifyArtist.getHref();
+                logger.info(href);
+
                 artist.setArtistName(name);
                 artist.setSpotifyId(spotifyId);
                 artist.setAvatarUrl(imageUrl);
