@@ -15,6 +15,7 @@
                         <div class="card-body">
                             <h3 class="card-title">${artist.artistName}</h3>
                             <p class="card-text">${artist.spotifyId}<p>
+                            <p class="card-text"><a href="${artist.href}">Listen on Spotify</a></p>
                             <p>${artist.description}</p>
                             <div>
                                 <form action="favorite" method="post">

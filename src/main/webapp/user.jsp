@@ -3,7 +3,7 @@
     <section class="projects-section bg-dark">
         <div class="container">
 
-            <h1 class="text-light">Hello ${username}</h1>
+            <h1 class="text-light">Hello, ${username}</h1>
             <div class="card-columns">
             <c:forEach var="engagement" items="${engagementInfo}">
 
@@ -14,7 +14,7 @@
                         <c:forEach var="city" items="${engagement.value['artist'].cities}">
                             <p>${city.toString()}</p>
                         </c:forEach>
-
+                        <p class="card-text"><a href="${artist.href}">Listen on Spotify</a></p>
                         <form action="remove-engagement" method="post">
                             <input type="hidden" name="engagementId" value="${engagement.value['engagementId']}">
                             <input class="btn btn-danger mb-2" type="submit" value="remove">
