@@ -1,14 +1,15 @@
 package edu.matc.persistence;
 
-import edu.matc.entity.*;
+import edu.matc.entity.Artist;
+import edu.matc.entity.ArtistEngagement;
+import edu.matc.entity.Region;
+import edu.matc.entity.User;
 import edu.matc.test.util.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -68,6 +69,10 @@ class UserTest {
 
     @Test
     void getByPropertyEqualSuccess() {
+        String propertyName = "userRole";
+        String value = "user";
+        List<Region> regions = userDao.getByPropertyEqual(propertyName, value);
+        assert(regions.size() == 6 );
 
 
     }
