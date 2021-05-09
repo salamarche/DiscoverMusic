@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * IndexPageView controls route to index
+ */
 @WebServlet(
             name = "IndexPageView",
             urlPatterns = {""}
@@ -23,7 +26,13 @@ public class IndexPageView extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-
+    /**
+     * Routes user to index page. Pulls and updates up to 6 recently discovered artists
+     * @param req requests
+     * @param resp reponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

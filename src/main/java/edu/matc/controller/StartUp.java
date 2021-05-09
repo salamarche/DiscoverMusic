@@ -9,6 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+/**
+ * StartUp runs application startup Procedures
+ */
 @WebServlet(
         name = "applicationStartup",
         urlPatterns = { "/startup" },
@@ -17,8 +20,16 @@ import javax.servlet.http.HttpServlet;
 public class StartUp extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Initializing behavior.
+     * @param config servlet configuration object
+     * @throws ServletException
+     */
     @SneakyThrows
     public void init(ServletConfig config) throws ServletException {
+
+        //TODO load properties here, change behavior in LoginPageView, LoginAction, SpotifyApiDao
 
         // Replaces country data available to JS.
         // Currently treating as static data, but can be re-configured to refresh on startUp

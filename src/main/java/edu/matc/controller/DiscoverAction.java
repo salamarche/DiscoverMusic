@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * Controls form logic for discover.jsp
+ */
 @WebServlet (
         urlPatterns = {"/discoverAction"}
 )
@@ -22,6 +25,15 @@ import java.util.Set;
 public class DiscoverAction extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * gets selected city from request and adds request attributes for displaying artists associated with city.
+     * Forwards user to discover.jsp
+     *
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Integer cityId = Integer.parseInt(req.getParameter("selectedCityId"));

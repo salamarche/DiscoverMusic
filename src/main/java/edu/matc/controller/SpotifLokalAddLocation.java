@@ -14,12 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * SpotifLokalAddLocation controls action from SptoifLokal.jsp add location form.
+ */
 @WebServlet(
         urlPatterns = {"/add-location"}
 )
 public class SpotifLokalAddLocation extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Adds city location to an artist's collection of locations. Returns user to spotifLokal.jsp
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int cityId = Integer.parseInt(req.getParameter("selectedCityId"));

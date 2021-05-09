@@ -11,12 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Controls access to the aws login url
+ */
 @WebServlet(
         urlPatterns = {"/login"}
 )
-
 public class LoginPageView extends HttpServlet implements PropertiesLoader {
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Forwards user to AWS cognito hosted UI.
+     *
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -17,12 +17,25 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * DiscoverFavorite controls logic from discover.jsp for adding an artist to user collection
+ */
 @WebServlet(
         urlPatterns = {"/favorite"}
 )
 public class DiscoverFavorite extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Adds artist to user collection.
+     * Checks to see if user is logged in, if so checks for existing artist. If artist does not exist adds artist.
+     * Returns user to previous page.
+     *
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //check to see that user is logged in

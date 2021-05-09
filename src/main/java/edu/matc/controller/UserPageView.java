@@ -17,12 +17,24 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * UserPageView routes user to their individual collection page
+ */
 @WebServlet(
         urlPatterns = {"/user"}
 )
 public class UserPageView extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Forwards a user to user.jsp with artist engagement information.
+     * If user is not signed in, forwards to login conroller.
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

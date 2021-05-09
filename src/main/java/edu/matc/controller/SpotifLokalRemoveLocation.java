@@ -14,18 +14,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * SpotifLokalRemoveLocation controls remove location form logic from spotifLokal.jsp
+ */
 @WebServlet(
         urlPatterns = {"/remove-location"}
 )
 public class SpotifLokalRemoveLocation extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Removes city from an artist's collection of artists.
+     *
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int artistId = Integer.parseInt(req.getParameter("artistId"));
         int cityId = Integer.parseInt(req.getParameter("location"));
 
-        logger.info("artist id: " + artistId + "\ncity id: " + cityId);
+        //logger.info("artist id: " + artistId + "\ncity id: " + cityId);
 
         GenericDao<City> cityDao = new GenericDao(City.class);
         GenericDao<Artist> artistDao = new GenericDao(Artist.class);

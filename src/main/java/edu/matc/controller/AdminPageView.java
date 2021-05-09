@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Routes user to admin.jsp
+ */
 @WebServlet(
         urlPatterns = {"/admin"}
 )
@@ -23,6 +26,15 @@ public class AdminPageView extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
 
+    /**
+     * Controls access to admin page.
+     * Checks the session for userRole admin. Forwards to admin page if ok, otherwise forwards to error page
+     * with message.
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

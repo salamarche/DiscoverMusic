@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.util.Enumeration;
 
+/**
+ * Routes user to confirmation.jsp
+ */
 @WebServlet (
         urlPatterns = {"/confirmation"}
 )
@@ -21,6 +22,13 @@ public class ConfirmationPageView extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Routes user to confirmation.jsp
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/confirmation.jsp");

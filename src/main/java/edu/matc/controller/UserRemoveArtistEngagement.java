@@ -12,19 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * UserRemoveArtistEngagement controls remove engagement form from user.jsp
+ */
 @WebServlet(
         urlPatterns = {"/remove-engagement"}
 )
-
 public class UserRemoveArtistEngagement extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Removes artist engagement record from a user's engagement collection.
+     * Returns user to their page.
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Integer id = Integer.parseInt(req.getParameter("engagementId"));
 
-        logger.info("remove engagement id: " + id);
+        //logger.info("remove engagement id: " + id);
 
         GenericDao aeDao = new GenericDao(ArtistEngagement.class);
         ArtistEngagement engagement = (ArtistEngagement) aeDao.getById(id);

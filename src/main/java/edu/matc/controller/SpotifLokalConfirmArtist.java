@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * SpotifLokalConfirmArtist controls action from SptoifLokal.jsp confirm artist form.
+ */
 @WebServlet(
         urlPatterns = {"/confirm-artist"}
 )
@@ -23,6 +26,14 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Validates the confirm artist form.
+     * Calls retrieve artist to obtain artist (null if not found) and forwards to spotifLokal with artist attribute set.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String idEntered = req.getParameter("spotifyId");
@@ -50,6 +61,14 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    /**
+     * Retrieves an artist either from the database or from Spotify API
+     * Using spotifyId, checks for existing Artist in db. If not found attempts to retrieve from Spotify, and adds that
+     * artist to the database. Returns user (may be null)
+     *
+     * @param spotifyId String of spotify Artist Id
+     * @return Artist object
+     */
     public Artist retrieveArtist(String spotifyId) {
         GenericDao artistDao = new GenericDao(Artist.class);
         Artist artist = null;

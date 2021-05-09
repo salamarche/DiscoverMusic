@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * AdminEditArtistAction handles the form logic from adminEditArtist.jsp
+ */
 @WebServlet(
         urlPatterns = {"/edit-artist"}
 )
@@ -19,6 +22,13 @@ public class AdminEditArtistAction extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * doPost updates an artist's description, and redirects user to admin.
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String description = req.getParameter("artistDescription");

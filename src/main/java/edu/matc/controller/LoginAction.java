@@ -27,15 +27,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * LoginAction controls login action submitted from confirm.jsp
+ */
 @WebServlet(
         urlPatterns = {"/loginAction"}
 )
-
-
 public class LoginAction extends HttpServlet implements PropertiesLoader {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-
+    /**
+     * receives idToken from confirm.jsp and adds user to session.
+     * Calls decodeToken to decode the idToken.
+     * Calls lookUpUser to look up user in existing db.
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String hash = req.getParameter("hash");
@@ -58,8 +67,6 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
 
         //forward to index
         resp.sendRedirect("./");
-
-
 
     }
 
@@ -148,6 +155,14 @@ public class LoginAction extends HttpServlet implements PropertiesLoader {
         return claims;
     }
 
+    /**
+     * lookUpUser looks for a user in the database.
+     * If found just returns user; if not found it creates a new user with email and username
+     *
+     * @param email user email
+     * @param username user username
+     * @return User object
+     */
     public User lookUpUser(String email, String username) {
         GenericDao dao = new GenericDao(User.class);
 

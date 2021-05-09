@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * AdminAction handles the logic from admin.jsp
+ * Contains a doPost for the select-artist form
+ */
 @WebServlet(
         urlPatterns = {"/admin-action"}
 )
@@ -22,6 +26,17 @@ public class AdminAction extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * doPost handles the form select-artist, and forwards to the correct page depending on the submit value:
+     *  - deletes an artist and returns the admin page.
+     *  - forwards to adminEditArtist to edit artist description.
+     *  - forwards to spotifLokal with the artist selected for location editing.
+     *
+     * @param req request
+     * @param resp response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
