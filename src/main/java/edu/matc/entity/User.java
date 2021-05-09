@@ -4,17 +4,23 @@ import javax.persistence.*;
 import java.util.*;
 
 
+/**
+ * User entity contains getters and setters
+ */
 @Entity(name = "User") //class name
 @Table(name = "user") //table name
-
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
+
     @Column(name="user_name")
     private String userName;
+
+    @Column(name="email")
     private String email;
+
     @Column(name="user_role")
     private String userRole;
 
@@ -30,68 +36,78 @@ public class User {
      * Instantiates a new user
      * @param userName the user name
      * @param email the user email
+     * @param role the user role
      *
      */
     public User(String userName, String email, String role) {
         this.userName = userName;
         this.email = email;
         this.userRole = role;
-
     }
 
     /**
-     * @return
+     * Artist User Engagement setter
+     * @return Artist User Engagement
      */
     public Set<ArtistEngagement> getArtistUserEngagement() {
         return artistUserEngagement;
     }
 
     /**
-     * @param artistUserEngagement
+     * Artist User Engagement getter
+     * @param artistUserEngagement Artist User Engagement
      */
     public void setArtistUserEngagement(Set<ArtistEngagement> artistUserEngagement) {
         this.artistUserEngagement = artistUserEngagement;
     }
 
     /**
-     * @param id
+     * User id setter
+     * @param id User id
      */
     public void setId(int id) { this.id = id; }
 
     /**
-     * @return
+     * User id getter
+     * @return User id
      */
     public int getId() { return id; }
 
     /**
-     * @param userName
+     * User name setter
+     * @param userName User name
      */
     public void setUserName(String userName) { this.userName = userName; }
 
     /**
-     * @return
+     * User name getter
+     * @return User name
      */
     public String getUserName() { return userName; }
 
     /**
-     * @param email
+     * User email setter
+     * @param email User email
      */
     public void setEmail(String email) { this.email = email; }
 
     /**
-     * @return
+     * User email getter
+     * @return User email
      */
     public String getEmail() { return email; }
 
     /**
-     * @return
+     * User role getter
+     * @return User role
      */
     public String getUserRole() {
         return userRole;
     }
 
     /**
-     * @param userRole
+     * User role setter
+     * @param userRole User role
      */
     public void setUserRole(String userRole) {
         this.userRole = userRole;
