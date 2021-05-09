@@ -197,27 +197,6 @@ public class Artist {
         city.getArtists().remove(this);
     }
 
-    /**
-     * @return
-     */
-    public Map<Integer, String> readableLocations () {
-        Map<Integer, String> artistLocations = new HashMap<>();
-        Set<City> artistCities = this.getCities();
-
-        for (City city : artistCities) {
-            String cityName = city.getCityName();
-            Region region = city.getRegion();
-            String regionName = region.getRegionName();
-            Country country = region.getCountry();
-            String countryName = country.getIso3();
-
-            String locationString = cityName + ", " + regionName + ", " + countryName;
-            Integer cityId = city.getId();
-            artistLocations.put(cityId, locationString);
-        }
-
-        return artistLocations;
-    }
 
 
 }

@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(
         urlPatterns = {"/confirm-artist"}
@@ -38,9 +36,6 @@ public class SpotifLokalConfirmArtist extends HttpServlet {
             if (artist.getSpotifyId() != null ) {
                 isFound = true;
 
-                Map<Integer, String> artistLocations = new HashMap<>();
-                artistLocations = artist.readableLocations();
-                req.setAttribute("artistLocations", artistLocations);
 
             } else {
                 logger.info("SpotifLokalConfirmArtist: artist not found");

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(
         urlPatterns = {"/remove-location"}
@@ -35,12 +34,8 @@ public class SpotifLokalRemoveLocation extends HttpServlet {
         artist.removeCity(city);
         artistDao.saveOrUpdate(artist);
 
-
-        Map<Integer, String> artistLocations = artist.readableLocations();
-
         req.setAttribute("artist", artist);
         req.setAttribute("isFound", true);
-        req.setAttribute("artistLocations", artistLocations);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/spotifLokal.jsp");
         dispatcher.forward(req, resp);
