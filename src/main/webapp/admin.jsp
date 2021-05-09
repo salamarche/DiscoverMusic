@@ -9,40 +9,52 @@
 <%@include file="taglib.jsp"%>
 <%@include file="nav.jsp"%>
 
+<section class="bg-dark p-5"></section>
 
-<div id="viewArtists">
-  <h2>Artists</h2>
-  <form action="edit-artist" method="post" id="editArtistForm">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Spotify ID</th>
-        <th>Artist Name</th>
-        <th>Avatar</th>
-        <th>Description</th>
-        <th>Select User</th>
-      </tr>
-      </thead>
+<section class="projects-section bg-light">
+  <div id="viewArtists">
+    <h2>Artists</h2>
+    <form action="edit-artist" method="post" id="editArtistForm">
+      <table id="adminTable" class="table table-bordered" cellspacing="0" width="100%">
 
-      <tbody>
-      <c:forEach var="artist" items="${artists}">
+        <thead>
         <tr>
-          <td>${artist.id}</td>
-          <td>${artist.spotifyId}</td>
-          <td>${artist.artistName}</td>
-          <td>${artist.avatarUrl}</td>
-          <td>${artist.description}</td>
-          <td><input type="radio" value="${artist.id}" name="selectedArtist" /></td>
+          <th>ID</th>
+          <th>Spotify ID</th>
+          <th>Artist Name</th>
+          <th>Avatar</th>
+          <th>Description</th>
+          <th>Select User</th>
         </tr>
-      </c:forEach>
-      </tbody>
-    </table>
+        </thead>
 
-    <button class="btn btn-danger" type="submit" name="submit" value="delete">Delete Artist</button>
-    <% //TODO add editArtist controller %>
-  </form>
-</div>
+        <tbody>
+        <c:forEach var="artist" items="${artists}">
+          <tr>
+            <td>${artist.id}</td>
+            <td>${artist.spotifyId}</td>
+            <td>${artist.artistName}</td>
+            <td>${artist.avatarUrl}</td>
+            <td>${artist.description}</td>
+            <td><input type="radio" value="${artist.id}" name="selectedArtist" /></td>
+          </tr>
+        </c:forEach>
+        </tbody>
+      </table>
 
-<%@include file="footer.jsp"%>
+      <button class="btn btn-danger" type="submit" name="submit" value="delete">Delete Artist</button>
+      <% //TODO add editArtist controller %>
+    </form>
+  </div>
+</section>
+
+
+
+<script type="text/javascript" class="init">
+  $(document).ready( function () {
+    $('#adminTable').DataTable();
+  } );
+</script>
+
+
 
