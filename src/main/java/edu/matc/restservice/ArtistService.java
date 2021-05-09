@@ -11,9 +11,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * Artist API service, contains 2 gets
+ */
 @Path("/artists")
 public class ArtistService {
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * gets all artists
+     * @return response with all artists
+     */
     @GET
     @Produces("text/plain")
     public Response getArtists() {
@@ -30,6 +38,11 @@ public class ArtistService {
         return Response.status(200).entity(output).build();
     }
 
+    /**
+     * get artist based on id
+     * @param id artist id
+     * @return response with single artist
+     */
     @GET
     @Produces("text/plain")
     @Path("/{param}")

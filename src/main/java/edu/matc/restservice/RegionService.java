@@ -17,10 +17,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.Set;
 
+/**
+ * Region API Service
+ */
 @Path("/regions")
 public class RegionService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Returns regions within a given country
+     * @param countryId countryId
+     * @return JSON response with a list of regions within a country
+     * @throws JsonProcessingException
+     */
     @GET
     @Path("{countryId}")
     @Produces("application/json")

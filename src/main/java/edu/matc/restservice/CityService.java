@@ -17,9 +17,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.Set;
 
+/**
+ * City API Service
+ */
 @Path("/cities")
 public class CityService {
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Returns cities within specified region
+     * @param regionId regionId
+     * @return JSON response containing array of cities
+     * @throws JsonProcessingException
+     */
     @GET
     @Path("{regionId}")
     @Produces("application/json")

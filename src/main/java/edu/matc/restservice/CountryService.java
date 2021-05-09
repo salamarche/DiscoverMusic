@@ -14,9 +14,18 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
+/**
+ * Country API Services
+ */
 @Path("/countries")
 public class CountryService {
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Returns entirety of db information, sorted by counry
+     * @return JSON response containing country information
+     * @throws JsonProcessingException
+     */
     @GET
     @Produces("application/json")
     public Response getCountryData() throws JsonProcessingException {
