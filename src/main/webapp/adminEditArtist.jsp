@@ -9,13 +9,26 @@
     <div class="container-fluid col-6">
         <h2>${artist.artistName}</h2>
         <form action="edit-artist" method="post" id="editArtistForm">
-
-            <textarea class="form-control" id="artistDescription" name="artistDescription">
-                ${artist.description}
-            </textarea>
-
-            <button class="btn btn-primary" type="submit" name="submit" value="edit">Edit</button>
+            <div class="form-group">
+                <label for="artistDescription">Edit Description</label>
+                <textarea class="form-control" id="artistDescription" name="artistDescription">
+                    ${artist.description}
+                </textarea>
+            </div>
+            <input class="hidden" name="artistId" id="artistId" value="${artist.id}">
+            <button class="btn btn-primary" type="submit" name="submit" value="edit">Submit</button>
 
         </form>
     </div>
 </section>
+
+<script>
+    /*
+    let descriptionArea = document.querySelector("#artistDescription");
+
+    descriptionArea.addEventListener("change", () => {
+        let descriptionString = descriptionArea.textContent;
+        descriptionArea.value = descriptionString;
+    })
+    */
+</script>
