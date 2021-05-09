@@ -20,7 +20,7 @@ public class SpotifyAPIDao implements PropertiesLoader {
     private final SpotifyApi spotifyApi;
 
     /**
-     * Default constructor with some hard coded secrets :0
+     * Default constructor loads properites
      *
      */
     public SpotifyAPIDao() {
@@ -87,9 +87,10 @@ public class SpotifyAPIDao implements PropertiesLoader {
     }
 
     /**
+     * gets a spotify Artist object
      *
-     * @param spotifyId
-     * @return
+     * @param spotifyId spotify id
+     * @return Spotify Artist
      */
     public Artist getSpotifyArtist(String spotifyId) {
 
@@ -114,6 +115,12 @@ public class SpotifyAPIDao implements PropertiesLoader {
 
     }
 
+    /**
+     * gets multiple spotify Artists
+     *
+     * @param ids Array of spotify artist ids
+     * @return Array of spotify artists
+     */
     public Artist[] getSeveralSpotifyArtists(String[] ids) {
         final GetSeveralArtistsRequest getSeveralArtistsRequest = spotifyApi.getSeveralArtists(ids)
                 .build();
