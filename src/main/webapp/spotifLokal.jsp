@@ -35,14 +35,15 @@
                             <div class="card-body">
                                 <c:if test="${fn:length(artist.cities) > 0}">
                                     <form id="removeLocationForm" action="remove-location" method="post" >
-                                        <c:forEach items="${artistLocations}" var="location">
+                                        <c:forEach items="${artist.cities}" var="city">
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item from-check">
-                                                    <input class="form-check-input" type="radio" id="${location.key}" name="location" value="${location.key}">
-                                                    <label class="form-check-label" for="${location.key}">${location.value}</label>
+                                                    <input class="form-check-input" type="radio" id="${city.id}" name="location" value="${city.id}">
+                                                    <label class="form-check-label" for="${city.id}">${city.toString()}</label>
                                                 </li>
                                             </ul>
                                         </c:forEach>
+
                                         <input type="hidden" name="artistId" value="${artist.id}">
                                         <input class="btn btn-danger" type="submit" value="remove location" name="removeLocation">
                                     </form>
