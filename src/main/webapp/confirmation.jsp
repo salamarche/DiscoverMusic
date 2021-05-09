@@ -3,7 +3,12 @@
 <%@include file="taglib.jsp"%>
 <%@include file="nav.jsp"%>
 
+<section class="projects-section text-center text-white" id="confirmation" style="background: url('images/sparks.jpg') ">
 <h2>Logging you in ...</h2>
+
+</section>
+
+
 
 
 
