@@ -39,7 +39,7 @@ class ArtistTest {
     @Test
     void insertArtistWithSuccess() {
         List<Artist> allArtistsBeforeInsert = artistDao.getAll();
-        Artist newArtist = new Artist("abc123", "jukeboxxx");
+        Artist newArtist = new Artist("abc123", "jukeboxxx", "url", "description", "href");
         artistDao.insert(newArtist);
         List<Artist> allArtistsAfterInsert = artistDao.getAll();
         assert(allArtistsAfterInsert.size() == (allArtistsBeforeInsert.size() + 1));
