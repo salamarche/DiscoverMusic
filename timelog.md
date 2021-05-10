@@ -42,6 +42,24 @@
 |4/19/2021|Functionality added: find artist by location + update artist location|7||
 |4/19/2021|Removing tomcat auth, added security check for admin page|2||
 |4/20/2021|Like function and user page|4||
+|4/21/2021|Functionality added: logout, user artist engagement remove, responsive header, error messaging|3||
+|4/23/2021|Added recently discovered artists to Index section|2||
+|4/25/2021|Styling|2||
+|4/26/2021|Styling|2||
+|4/27/2021|Styling|1||
+|4/29/2021|Styling|.5||
+|5/1/2021|Error Handling|1.5||
+|5/2/2021|Startup Servlet|1||
+|5/5/2021|Styling, Removed hibernate config from git|2||
+|5/8/2021|Reconfigured DB and App to include extern href for artist, added in missing test|3||
+|5/9/2021|Improved Admin edit artist functionality. Reconfigured SpotifLokal controllers to simplify code, Styling|5| 
+|5/9/2021|Javadoc Comments and Readme update|3||
+
+
+
+
+
+
 
 
 
