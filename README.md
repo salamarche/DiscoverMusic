@@ -1,6 +1,9 @@
 # Simone LaMarche Individual Project
 This is an individual project for Madison College Enterprise Java Class - Spring, 2021
 
+## Application Demo
+https://www.loom.com/share/5915f72b90c549eda762f057da573a9d
+
 ## Problem Statement
 The ongoing pandemic  makes it harder than ever to discover local music. This web app aims to help connect you with new-to-you local musicians and bands.
 
@@ -24,6 +27,7 @@ The ongoing pandemic  makes it harder than ever to discover local music. This we
 
 ### Web Services
 * Spotify API
+* [Spotify Web API Java Wrapper](https://github.com/thelinmichael/spotify-web-api-java)
 
 ### Other Tools
 * Logging: Log4J

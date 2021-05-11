@@ -29,7 +29,6 @@ public class StartUp extends HttpServlet {
     @SneakyThrows
     public void init(ServletConfig config) throws ServletException {
 
-        //TODO load properties here, change behavior in LoginPageView, LoginAction, SpotifyApiDao
 
         // Replaces country data available to JS.
         // Currently treating as static data, but can be re-configured to refresh on startUp
