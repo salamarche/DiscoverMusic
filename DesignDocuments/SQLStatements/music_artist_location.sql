@@ -1,0 +1,12 @@
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (7, 1840000494);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (8, 1840000494);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (5, 1840002320);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (16, 1840002344);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (4, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (5, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (9, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (10, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (11, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (16, 1840002915);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (12, 1840003033);
+INSERT INTO music.artist_location (artist_id, city_id) VALUES (12, 1840020491);

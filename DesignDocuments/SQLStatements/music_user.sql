@@ -1,0 +1,1 @@
+INSERT INTO music.user (id, user_name, email, user_role) VALUES (3, 'salamarche', 'salamarche@madisoncollege.edu', 'admin');
